@@ -1,11 +1,10 @@
-import {
-  Home,
-  BookOpen,
-  Library,
-  FileText,
-  GraduationCap,
-  MessageSquare,
-  LogOut,
+import {Home,
+BookOpen,
+Library,
+FileText,
+GraduationCap,
+MessageSquare,
+LogOut,
 } from 'lucide-react';
 import './MenuLateral.css';
 
@@ -82,4 +81,4 @@ export default function MenuLateral({ itemAtivo = 'Início', aoSair }) {
       </div>
     </aside>
   );
-}
+};
