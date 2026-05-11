@@ -1,0 +1,61 @@
+.cabecalhoAuth {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 32px;
+  border-bottom: 1px solid rgba(226, 218, 208, 0.75);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.marcaAuth {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoAuth {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #8d221e, #d13b2f);
+  color: #fff;
+  font-weight: 800;
+}
+
+.nomeAuth {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #221f27;
+}
+
+.nomeAuth span {
+  color: #a91f1b;
+}
+
+.acoesAuth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.botaoTrocaAuth {
+  border: 0;
+  background: transparent;
+  color: #6f667a;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .cabecalhoAuth {
+    padding: 14px 16px;
+  }
+
+  .botaoTrocaAuth {
+    font-size: 0.78rem;
+    text-align: right;
+  }
+}

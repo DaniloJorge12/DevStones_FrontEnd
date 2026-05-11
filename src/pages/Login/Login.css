@@ -1,0 +1,29 @@
+.paginaLogin {
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at top left, rgba(170, 59, 255, 0.06), transparent 22%),
+    linear-gradient(180deg, #f8f6f2 0%, #f2efeb 100%);
+}
+
+.conteudoLogin {
+  min-height: calc(100svh - 72px);
+  display: grid;
+  place-items: center;
+  padding: 30px 18px 44px;
+}
+
+.cartaoLogin {
+  width: min(100%, 860px);
+  display: flex;
+  border: 1px solid #e9dfd5;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(39, 31, 44, 0.1);
+}
+
+@media (max-width: 960px) {
+  .cartaoLogin {
+    flex-direction: column;
+    width: min(100%, 560px);
+  }
+}

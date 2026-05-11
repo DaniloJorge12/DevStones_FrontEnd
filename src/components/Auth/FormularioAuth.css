@@ -1,0 +1,163 @@
+.formularioAuth {
+  flex: 1;
+  padding: 34px 34px 30px;
+  background: #fff;
+  border-radius: 0 18px 18px 0;
+}
+
+.abasAuth {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #ece3d8;
+}
+
+.abasAuth button {
+  border: 0;
+  background: transparent;
+  color: #7e7688;
+  padding: 0 0 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  position: relative;
+}
+
+.abaAtiva {
+  color: #1f1b25 !important;
+}
+
+.abaAtiva::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #d13b2f;
+}
+
+.cabecalhoFormularioAuth {
+  padding: 22px 0 20px;
+}
+
+.cabecalhoFormularioAuth h2 {
+  margin: 0 0 8px;
+  color: #1f1b25;
+  font-size: 1.55rem;
+  letter-spacing: -0.05em;
+}
+
+.cabecalhoFormularioAuth p {
+  margin: 0;
+  color: #7d738a;
+  font-size: 0.93rem;
+}
+
+.camposAuth {
+  display: grid;
+  gap: 14px;
+}
+
+.camposAuth label {
+  display: grid;
+  gap: 8px;
+}
+
+.camposAuth span {
+  color: #4a4452;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.camposAuth input {
+  width: 100%;
+  border: 1px solid #ebe2d8;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #1f1b25;
+  outline: none;
+}
+
+.camposAuth input:focus {
+  border-color: #c5392f;
+  box-shadow: 0 0 0 3px rgba(197, 57, 47, 0.12);
+}
+
+.duasColunasAuth {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.campoSenhaAuth {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #ebe2d8;
+  border-radius: 12px;
+  padding-right: 10px;
+}
+
+.campoSenhaAuth input {
+  border: 0;
+  box-shadow: none;
+}
+
+.campoSenhaAuth button {
+  border: 0;
+  background: transparent;
+  color: #8a8196;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.mensagemAuth {
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+
+.mensagemErroAuth {
+  background: #fff3ef;
+  border: 1px solid #f0c4bb;
+  color: #c5392f;
+}
+
+.mensagemSucessoAuth {
+  background: #eef8f0;
+  border: 1px solid #cfe8d5;
+  color: #246b37;
+}
+
+.botaoPrincipalAuth {
+  margin-top: 4px;
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 16px;
+  background: linear-gradient(135deg, #c5392f, #9c221d);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 16px 28px rgba(197, 57, 47, 0.2);
+}
+
+.botaoPrincipalAuth:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+@media (max-width: 960px) {
+  .formularioAuth {
+    border-radius: 0 0 18px 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formularioAuth {
+    padding: 24px 18px 20px;
+  }
+
+  .duasColunasAuth {
+    grid-template-columns: 1fr;
+  }
+}
