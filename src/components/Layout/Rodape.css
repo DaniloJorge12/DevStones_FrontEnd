@@ -1,0 +1,34 @@
+.rodape {
+  border-top: 1px solid rgba(226, 218, 208, 0.9);
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px);
+  padding: 22px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #a39cab;
+  font-size: 0.78rem;
+}
+
+.linksRodape {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.linksRodape a:hover {
+  color: #6f667a;
+}
+
+@media (max-width: 768px) {
+  .rodape {
+    padding: 18px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .linksRodape {
+    gap: 12px;
+  }
+}
