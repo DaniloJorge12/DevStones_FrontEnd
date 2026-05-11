@@ -1,0 +1,140 @@
+.menuLateral {
+  width: 88px;
+  min-height: 100svh;
+  border-right: 1px solid #ece6de;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  flex: 0 0 auto;
+  overflow: hidden;
+  transition: width 0.25s ease;
+}
+
+.menuLateral:hover,
+.menuLateral:focus-within {
+  width: 270px;
+}
+
+.cabecalhoMenu {
+  padding: 32px 20px 18px;
+}
+
+.tituloMenu {
+  display: inline-flex;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: max-width 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #a39cab;
+}
+
+.menuLateral:hover .tituloMenu,
+.menuLateral:focus-within .tituloMenu {
+  max-width: 220px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.listaMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 18px;
+}
+
+.itemMenu {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  border-left: 4px solid transparent;
+  border-radius: 0 999px 999px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 14px 12px;
+  color: #807889;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.menuLateral:hover .itemMenu,
+.menuLateral:focus-within .itemMenu {
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 14px 24px;
+  border-radius: 0;
+}
+
+.itemMenu:hover {
+  background: #f6f3ef;
+  color: #221f27;
+}
+
+.itemMenu:focus-visible {
+  outline: 2px solid #c5392f;
+  outline-offset: -2px;
+}
+
+.itemMenuAtivo {
+  background: #fff3ef;
+  color: #c5392f;
+  border-left-color: #c5392f;
+}
+
+.iconeMenu {
+  flex: 0 0 auto;
+  color: #b6afbd;
+}
+
+.iconeMenuAtivo {
+  color: #c5392f;
+}
+
+.textoMenu {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: max-width 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menuLateral:hover .textoMenu,
+.menuLateral:focus-within .textoMenu {
+  max-width: 180px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menuInferior {
+  padding: 0 0 26px;
+}
+
+@media (max-width: 1024px) {
+  .menuLateral {
+    width: 80px;
+  }
+
+  .menuLateral:hover,
+  .menuLateral:focus-within {
+    width: 238px;
+  }
+}
+
+@media (max-width: 900px) {
+  .menuLateral {
+    display: none;
+  }
+}

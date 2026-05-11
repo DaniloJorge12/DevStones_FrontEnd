@@ -1,0 +1,52 @@
+.paginaBiblioteca {
+  min-height: 100svh;
+  display: flex;
+  background:
+    radial-gradient(circle at top left, rgba(170, 59, 255, 0.07), transparent 22%),
+    linear-gradient(180deg, #f8f6f2 0%, #f2efeb 100%);
+  color: #2e2a35;
+}
+
+.conteudoBiblioteca {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaBiblioteca {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conteudoBibliotecaInterno {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 30px 0 40px;
+}
+
+.estadoBiblioteca {
+  padding: 18px 20px;
+  border: 1px dashed #e1d7cc;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #6d6476;
+}
+
+@media (max-width: 1024px) {
+  .conteudoBibliotecaInterno {
+    width: min(100%, calc(100% - 32px));
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .paginaBiblioteca {
+    min-height: auto;
+  }
+
+  .conteudoBibliotecaInterno {
+    width: calc(100% - 24px);
+    padding-top: 18px;
+  }
+}

@@ -1,0 +1,83 @@
+.painelAuth {
+  width: min(100%, 330px);
+  background: linear-gradient(180deg, #353741 0%, #3d404a 100%);
+  color: #fff;
+  padding: 34px 28px;
+  border-radius: 18px 0 0 18px;
+}
+
+.conteudoPainelAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+}
+
+.iconePainelAuth {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.painelAuth h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.painelAuth p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.listaVantagensAuth {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 16px;
+}
+
+.listaVantagensAuth li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.marcaVantagemAuth {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #cfd3df;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.listaVantagensAuth strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.listaVantagensAuth span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.79rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .painelAuth {
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+  }
+}

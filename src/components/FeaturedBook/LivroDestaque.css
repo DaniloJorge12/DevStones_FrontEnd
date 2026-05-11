@@ -1,0 +1,100 @@
+.livroDestaque {
+  margin-top: 28px;
+  padding: 30px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(232, 225, 216, 0.9);
+  box-shadow: 0 14px 30px rgba(34, 27, 39, 0.06);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.capaLivro {
+  width: 100%;
+}
+
+.capaLivro img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 14px 28px rgba(30, 23, 33, 0.16);
+}
+
+.textoLivro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.seloLivro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #c5392f;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.pontoLivro {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c5392f;
+}
+
+.textoLivro h2 {
+  margin: 0 0 14px;
+  color: #1f1b25;
+  font-size: clamp(1.7rem, 2.3vw, 2.5rem);
+  letter-spacing: -0.05em;
+}
+
+.textoLivro p {
+  max-width: 720px;
+  color: #6d6476;
+  font-size: 0.96rem;
+}
+
+.botaoLivro {
+  margin-top: 26px;
+  width: fit-content;
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #92211d, #c5392f);
+  color: #fff;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.botaoLivro:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .livroDestaque {
+    grid-template-columns: 1fr;
+  }
+
+  .capaLivro {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .livroDestaque {
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 22px;
+    gap: 22px;
+  }
+}
