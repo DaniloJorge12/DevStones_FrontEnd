@@ -1,21 +1,24 @@
-import {
-  Home,
-  BookOpen,
-  Library,
-  FileText,
-  GraduationCap,
-  MessageSquare,
-  LogOut,
+import {Home,
+BookOpen,
+Library,
+FileText,
+GraduationCap,
+MessageSquare,
+LogOut,
+PlayCircle,
+CircleCheck,
+InfoIcon,
 } from 'lucide-react';
 import './MenuLateral.css';
 
 const itensMenu = [
-  { icone: Home, texto: 'Início', ativo: true, href: '/' },
-  { icone: BookOpen, texto: 'Cursos e módulos' },
-  { icone: Library, texto: 'Biblioteca', href: '/biblioteca' },
-  { icone: FileText, texto: 'Simulados e provas' },
-  { icone: GraduationCap, texto: 'Vestibular USP' },
-  { icone: MessageSquare, texto: 'Fórum e dúvidas' },
+    { icone: Home, texto: 'Início', href: '/' },
+    { icone: BookOpen, texto: 'O Livro Principal', href: '/livro' },
+    { icone: Library, texto: 'Biblioteca', href: '/biblioteca' },
+    { icone: MessageSquare, texto: 'Comunidade & Dicas', href: '/comunidade' },
+    { icone: CircleCheck, texto: 'Simulados & Quiz', href: '/simulados' },
+    { icone: PlayCircle, texto: 'Videoaulas', href: '/videoaulas' },
+    { icone: InfoIcon, texto: 'Sobre nós', href: '/sobre' },
 ];
 
 function ItemMenu({ icone, texto, ativo = false, href, itemAtivo, aoSair }) {
@@ -82,4 +85,4 @@ export default function MenuLateral({ itemAtivo = 'Início', aoSair }) {
       </div>
     </aside>
   );
-}
+};

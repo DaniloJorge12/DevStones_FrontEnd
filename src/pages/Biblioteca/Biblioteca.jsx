@@ -94,51 +94,53 @@ export default function Biblioteca({ usuario, aoSair }) {
   const livrosVisiveis = filtrarLivros(livros, filtroAtivo, busca);
 
   return (
-    <div className="paginaBiblioteca">
-      <MenuLateral itemAtivo="Biblioteca" aoSair={aoSair} />
+      <div className="paginaBiblioteca">
+          <MenuLateral itemAtivo="Biblioteca" aoSair={aoSair} />
 
-      <div className="conteudoBiblioteca">
-        <Cabecalho usuario={usuario} aoSair={aoSair} />
+          <div className="conteudoBiblioteca">
+              <Cabecalho usuario={usuario} aoSair={aoSair} />
 
-        <main className="areaBiblioteca">
-          <div className="conteudoBibliotecaInterno">
-            <TopoBiblioteca
-              totalLivros={livrosVisiveis.length}
-              valorBusca={busca}
-              aoMudarBusca={(evento) => setBusca(evento.target.value)}
-            />
+              <main className="areaBiblioteca">
+                  <div className="conteudoBibliotecaInterno">
+                      <TopoBiblioteca
+                          totalLivros={livrosVisiveis.length}
+                          valorBusca={busca}
+                          aoMudarBusca={(evento) => setBusca(evento.target.value)}
+                      />
 
-            <FiltrosBiblioteca
-              filtros={filtros.map((filtro) => ({
-                ...filtro,
-                total:
-                  filtro.valor === 'todos'
-                    ? livros.length
-                    : filtrarLivros(livros, filtro.valor, busca).length,
-              }))}
-              filtroAtivo={filtroAtivo}
-              aoSelecionarFiltro={setFiltroAtivo}
-            />
+                      <FiltrosBiblioteca
+                          filtros={filtros.map((filtro) => ({
+                              ...filtro,
+                              total:
+                                  filtro.valor === 'todos'
+                                      ? livros.length
+                                      : filtrarLivros(livros, filtro.valor, busca).length,
+                          }))}
+                          filtroAtivo={filtroAtivo}
+                          aoSelecionarFiltro={setFiltroAtivo}
+                      />
 
-            {erro ? (
-              <div className="estadoBiblioteca">{erro}</div>
-            ) : carregando ? (
-              <div className="estadoBiblioteca">Carregando livros...</div>
-            ) : !backendConfigurado ? (
-              <div className="estadoBiblioteca">
-                Biblioteca pronta para o backend. Quando você definir o link em
-                VITE_API_BIBLIOTECA_URL, os livros aparecem aqui automaticamente.
-              </div>
-            ) : livrosVisiveis.length > 0 ? (
-              <GradeLivros livros={livrosVisiveis} />
-            ) : (
-              <div className="estadoBiblioteca">Nenhum livro encontrado com esses filtros.</div>
-            )}
+                      {erro ? (
+                          <div className="estadoBiblioteca">{erro}</div>
+                      ) : carregando ? (
+                          <div className="estadoBiblioteca">Carregando livros...</div>
+                      ) : !backendConfigurado ? (
+                          <div className="estadoBiblioteca">
+                              O BackEnd não está configurado. Grupo, insira a
+                              VITE_API_BIBLIOTECA_URL
+                          </div>
+                      ) : livrosVisiveis.length > 0 ? (
+                          <GradeLivros livros={livrosVisiveis} />
+                      ) : (
+                          <div className="estadoBiblioteca">
+                              Nenhum livro encontrado com esses filtros.
+                          </div>
+                      )}
+                  </div>
+              </main>
+
+              <Rodape />
           </div>
-        </main>
-
-        <Rodape />
       </div>
-    </div>
   );
 }
