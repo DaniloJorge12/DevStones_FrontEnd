@@ -1,11 +1,11 @@
-.paginaHome {
+.paginaSobre {
   min-height: 100svh;
   display: flex;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.92));
   color: #2e2a35;
 }
 
-.conteudoHome {
+.conteudoSobre {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 @media (max-width: 768px) {
-  .paginaHome {
+  .paginaSobre {
     min-height: auto;
   }
 

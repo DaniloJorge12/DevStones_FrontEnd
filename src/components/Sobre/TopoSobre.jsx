@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react';
 import './TopoSobre.css';
 
 export default function TopoSobre({ totalIntegrantes, valorBusca, aoMudarBusca }) {
