@@ -1,0 +1,42 @@
+.paginaHome {
+  min-height: 100svh;
+  display: flex;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.92));
+  color: #2e2a35;
+}
+
+.conteudoHome {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaPrincipal {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conteudoPrincipal {
+  width: min(1140px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 32px 0 40px;
+}
+
+@media (max-width: 1024px) {
+  .conteudoPrincipal {
+    width: min(100%, calc(100% - 32px));
+    padding-top: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .paginaHome {
+    min-height: auto;
+  }
+
+  .conteudoPrincipal {
+    width: calc(100% - 24px);
+    padding-top: 18px;
+  }
+}

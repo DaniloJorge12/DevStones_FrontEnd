@@ -1,0 +1,79 @@
+.topoSobre {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+
+.textoTopoSobre {
+  max-width: 680px;
+}
+
+.seloTopoSobre {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: #c5392f;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.textoTopoSobre h1 {
+  margin: 0 0 10px;
+  color: #1f1b25;
+  font-size: clamp(2rem, 2.7vw, 2.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.textoTopoSobre p {
+  margin: 0;
+  color: #6d6476;
+  max-width: 640px;
+}
+
+.buscaSobre {
+  min-width: min(100%, 330px);
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid #e8e1d8;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #8a8196;
+  box-shadow: 0 10px 24px rgba(28, 20, 33, 0.05);
+}
+
+.buscaSobre input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  padding: 14px 0;
+  background: transparent;
+  color: #221f27;
+}
+
+.buscaSobre input::placeholder {
+  color: #a39cab;
+}
+
+.contadorSobre {
+  white-space: nowrap;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #a39cab;
+}
+
+@media (max-width: 900px) {
+  .topoSobre {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buscaSobre {
+    min-width: 100%;
+  }
+}

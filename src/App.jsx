@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Home from './pages/Home/Home.jsx';
 import Biblioteca from './pages/Biblioteca/Biblioteca.jsx';
+import Sobre from './pages/Sobre/Sobre.jsx';
 import Login from './pages/Login/Login.jsx';
 import {
 	limparUsuarioAutenticado,
@@ -17,6 +18,10 @@ function obterPaginaAtual() {
 
 	if (window.location.pathname.startsWith('/biblioteca')) {
 		return 'biblioteca';
+	}
+
+    if (window.location.pathname.startsWith('/sobre')) {
+		return 'sobre';
 	}
 
 	return 'home';
@@ -78,6 +83,10 @@ export default function App() {
 
 	if (paginaEfetiva === 'biblioteca') {
 		return <Biblioteca usuario={usuario} aoSair={sair} />;
+	}
+
+    if (paginaEfetiva === 'sobre') {
+		return <Sobre usuario={usuario} aoSair={sair} />;
 	}
 
 	return <Home usuario={usuario} aoSair={sair} />;
