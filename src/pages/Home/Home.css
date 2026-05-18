@@ -1,7 +1,7 @@
 .paginaHome {
   min-height: 100svh;
   display: flex;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.92));
+  background: #f7f7f5;
   color: #2e2a35;
 }
 

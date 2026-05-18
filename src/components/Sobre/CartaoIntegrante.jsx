@@ -1,21 +1,47 @@
-import { ArrowRight } from 'lucide-react';
 import './CartaoIntegrante.css';
 
-export default function CartaoIntegrante({ integrante }) {
-  return (
-      <article className="cartaoIntegrante">
-          <div className="capaIntegrante">
-              <img src={integrante.imagem} alt={`Capa do Integrante ${integrante.titulo}`} />
-              <span className="tagIntegrante">{integrante.destaque}</span>
-          </div>
+export default function CartaoIntegrante({
+    integrante,
+}) {
+    const imagemPadrao =
+        'https://cdn-icons-png.flaticon.com/512/149/149071.png';
 
-          <div className="conteudoIntegrante">
-              <div className="cabecalhoIntegrante">
-                  <span className="categoriaIntegrante">{integrante.categoria}</span>
-                  <h3>{integrante.titulo}</h3>
-                  <p className="autorIntegrante">{integrante.autor}</p>
-              </div>
-          </div>
-      </article>
-  );
+    const imagemValida =
+        integrante.foto?.includes(
+            'exemplo.com',
+        )
+            ? imagemPadrao
+            : integrante.foto;
+
+    return (
+        <article className="cartaoIntegrante">
+            <div className="capaIntegrante">
+                <img
+                    src={
+                        imagemValida ||
+                        imagemPadrao
+                    }
+                    alt={integrante.nome}
+                    onError={(e) => {
+                        e.target.src =
+                            imagemPadrao;
+                    }}
+                />
+            </div>
+
+            <div className="conteudoIntegrante">
+                <div className="cabecalhoIntegrante">
+                    <span className="categoriaIntegrante">
+                        {integrante.funcao}
+                    </span>
+
+                    <h3>{integrante.nome}</h3>
+
+                    <p className="autorIntegrante">
+                        {integrante.curso}
+                    </p>
+                </div>
+            </div>
+        </article>
+    );
 }

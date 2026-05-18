@@ -1,53 +1,45 @@
 .secaoIntegrantes {
-  margin-top: 22px;
+  margin-top: 36px;
 }
 
 .tituloSecaoIntegrantes {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .tituloSecaoIntegrantes h2 {
   margin: 0;
-  color: #1f1b25;
-  font-size: 1.25rem;
-  letter-spacing: -0.03em;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  color: #171717;
+
+  letter-spacing: -0.5px;
 }
 
 .tituloSecaoIntegrantes p {
-  margin: 0;
-  color: #7d738a;
-  font-size: 0.92rem;
+  margin: 4px 0 0;
+
+  color: #8d8d8d;
+  font-size: 14px;
 }
 
 .gradeIntegrantes {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(230px, 1fr));
+
+  gap: 22px;
 }
 
-@media (max-width: 1200px) {
-  .gradeIntegrantes {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .tituloSecaoIntegrantes {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .gradeIntegrantes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .gradeIntegrantes {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
