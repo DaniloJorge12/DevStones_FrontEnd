@@ -23,7 +23,7 @@ const itensMenu = [
 
 function ItemMenu({ icone, texto, ativo = false, href, itemAtivo, aoSair }) {
   const Icone = icone;
-  const estaAtivo = ativo || itemAtivo === texto;
+  const estaAtivo = ativo || itemAtivo === texto; 
 
   if (href) {
     return (

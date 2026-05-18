@@ -3,6 +3,7 @@ import Home from './pages/Home/Home.jsx';
 import Biblioteca from './pages/Biblioteca/Biblioteca.jsx';
 import Sobre from './pages/Sobre/Sobre.jsx';
 import Login from './pages/Login/Login.jsx';
+import NotFound from './pages/NotFound/NotFound.jsx';
 import {
 	limparUsuarioAutenticado,
 	obterAcessoDev,
@@ -12,19 +13,24 @@ import {
 } from './services/authStorage.js';
 
 function obterPaginaAtual() {
-	if (window.location.pathname.startsWith('/login')) {
+	const pathname = window.location.pathname.toLowerCase();
+	if (pathname === '/' || pathname === '') {
+		return 'home';
+	}
+
+	if (pathname.startsWith('/login')) {
 		return 'login';
 	}
 
-	if (window.location.pathname.startsWith('/biblioteca')) {
+	if (pathname.startsWith('/biblioteca')) {
 		return 'biblioteca';
 	}
 
-    if (window.location.pathname.startsWith('/sobre')) {
+	if (pathname.startsWith('/sobre')) {
 		return 'sobre';
 	}
 
-	return 'home';
+	return 'notfound';
 }
 
 export default function App() {
@@ -57,7 +63,9 @@ export default function App() {
 		};
 	}, []);
 
-	const paginaEfetiva = usuario || acessoDev ? (paginaAtual === 'login' ? 'home' : paginaAtual) : 'login';
+	const paginaEfetiva = usuario || acessoDev
+		? (paginaAtual === 'login' ? 'home' : paginaAtual)
+		: (paginaAtual === 'login' || paginaAtual === 'notfound' ? paginaAtual : 'login');
 
 	function autenticar(usuarioAutenticado) {
 		const usuarioNormalizado = salvarUsuarioAutenticado(usuarioAutenticado);
@@ -85,8 +93,12 @@ export default function App() {
 		return <Biblioteca usuario={usuario} aoSair={sair} />;
 	}
 
-    if (paginaEfetiva === 'sobre') {
+	if (paginaEfetiva === 'sobre') {
 		return <Sobre usuario={usuario} aoSair={sair} />;
+	}
+
+	if (paginaEfetiva === 'notfound') {
+		return <NotFound />;
 	}
 
 	return <Home usuario={usuario} aoSair={sair} />;
