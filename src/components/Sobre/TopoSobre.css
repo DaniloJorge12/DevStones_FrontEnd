@@ -1,79 +1,140 @@
 .topoSobre {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 48px;
 }
 
 .textoTopoSobre {
-  max-width: 680px;
+    max-width: 820px;
 }
 
 .seloTopoSobre {
-  display: inline-flex;
-  margin-bottom: 10px;
-  color: #c5392f;
-  font-size: 0.74rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background: #f1f1f1;
+
+    color: #666;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    margin-bottom: 18px;
 }
 
 .textoTopoSobre h1 {
-  margin: 0 0 10px;
-  color: #1f1b25;
-  font-size: clamp(2rem, 2.7vw, 2.9rem);
-  line-height: 1.05;
-  letter-spacing: -0.05em;
+    margin: 0;
+
+    font-size: 52px;
+    font-weight: 800;
+
+    line-height: 1.05;
+    letter-spacing: -2px;
+
+    color: #171717;
 }
 
 .textoTopoSobre p {
-  margin: 0;
-  color: #6d6476;
-  max-width: 640px;
+    max-width: 700px;
+
+    margin: 18px auto 0;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    color: #6b7280;
+}
+.cardsProjeto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+
+    width: 100%;
+
+    margin-top: 52px;
 }
 
-.buscaSobre {
-  min-width: min(100%, 330px);
-  padding: 0 14px;
-  border-radius: 18px;
-  border: 1px solid #e8e1d8;
-  background: rgba(255, 255, 255, 0.92);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #8a8196;
-  box-shadow: 0 10px 24px rgba(28, 20, 33, 0.05);
+.cardProjeto {
+    background: white;
+
+    border: 1px solid #ececec;
+    border-radius: 26px;
+
+    padding: 28px;
+
+    text-align: left;
+
+    transition: 0.25s ease;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.04);
 }
 
-.buscaSobre input {
-  width: 100%;
-  border: 0;
-  outline: none;
-  padding: 14px 0;
-  background: transparent;
-  color: #221f27;
+.cardProjeto:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.08);
 }
 
-.buscaSobre input::placeholder {
-  color: #a39cab;
+.iconeProjeto {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
 }
 
-.contadorSobre {
-  white-space: nowrap;
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: #a39cab;
+.vermelho {
+    background: #fff1f1;
+    color: #ef4444;
 }
 
-@media (max-width: 900px) {
-  .topoSobre {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.azul {
+    background: #eff6ff;
+    color: #2563eb;
+}
 
-  .buscaSobre {
-    min-width: 100%;
-  }
+.verde {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.cardProjeto h3 {
+    margin: 0 0 10px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #171717;
+}
+
+.cardProjeto p {
+    margin: 0;
+
+    color: #6b7280;
+
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+@media (max-width: 1000px) {
+    .cardsProjeto {
+        grid-template-columns: 1fr;
+    }
 }

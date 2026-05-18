@@ -12,21 +12,25 @@
   flex-direction: column;
 }
 
-.areaPrincipal {
+.areaSobre {
   flex: 1;
   overflow-y: auto;
 }
 
-.conteudoPrincipal {
-  width: min(1140px, calc(100% - 48px));
+.conteudoSobreInterno {
+  width: 100%;
+  max-width: 1400px;
+
   margin: 0 auto;
-  padding: 32px 0 40px;
+
+  padding:
+      48px 64px 80px;
 }
 
 @media (max-width: 1024px) {
-  .conteudoPrincipal {
+  .conteudoSobreInterno {
     width: min(100%, calc(100% - 32px));
-    padding-top: 24px;
+    padding: 40px 32px 70px;
   }
 }
 
@@ -35,8 +39,8 @@
     min-height: auto;
   }
 
-  .conteudoPrincipal {
+  .conteudoSobreInterno {
     width: calc(100% - 24px);
-    padding-top: 18px;
+    padding: 28px 20px 60px;
   }
 }
