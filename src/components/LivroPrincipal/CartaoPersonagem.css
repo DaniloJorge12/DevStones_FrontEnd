@@ -1,0 +1,54 @@
+.cartaoPersonagem {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ece6de;
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(60, 40, 30, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cartaoPersonagem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(60, 40, 30, 0.11);
+}
+
+.cartaoPersonagem__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c5392f, #8b1a16);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.cartaoPersonagem__corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cartaoPersonagem__nome {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #221f27;
+  letter-spacing: -0.01em;
+}
+
+.cartaoPersonagem__descricao {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #807889;
+  line-height: 1.55;
+}

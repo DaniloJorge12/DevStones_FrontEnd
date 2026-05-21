@@ -1,28 +1,56 @@
 import { Award, Lightbulb, Library, ChevronRight } from 'lucide-react';
 import './AtalhosRapidos.css';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 
-const atalhos = [
-  {
-    icone: Award,
-    tag: 'Quiz',
-    titulo: 'Quiz diário',
-    descricao: 'Teste seus conhecimentos e receba um brinde.',
-  },
-  {
-    icone: Lightbulb,
-    tag: 'Últimas dicas',
-    titulo: 'Últimas dicas',
-    descricao: 'Fique por dentro de tudo que há de importante.',
-  },
-  {
-    icone: Library,
-    tag: 'Biblioteca',
-    titulo: 'Biblioteca',
-    descricao: 'Acesse o que você mais precisa rapidamente.',
-  },
-];
+const atalhos = {
+  pt: [
+    {
+      icone: Award,
+      tag: 'Quiz',
+      titulo: 'Quiz diário',
+      descricao: 'Teste seus conhecimentos e receba um brinde.',
+    },
+    {
+      icone: Lightbulb,
+      tag: 'Últimas dicas',
+      titulo: 'Últimas dicas',
+      descricao: 'Fique por dentro de tudo que há de importante.',
+    },
+    {
+      icone: Library,
+      tag: 'Biblioteca',
+      titulo: 'Biblioteca',
+      descricao: 'Acesse o que você mais precisa rapidamente.',
+    },
+  ],
+  en: [
+    {
+      icone: Award,
+      tag: 'Quiz',
+      titulo: 'Daily Quiz',
+      descricao: 'Test your knowledge and earn a reward.',
+    },
+    {
+      icone: Lightbulb,
+      tag: 'Latest Tips',
+      titulo: 'Latest Tips',
+      descricao: 'Stay up to date with everything that matters.',
+    },
+    {
+      icone: Library,
+      tag: 'Library',
+      titulo: 'Library',
+      descricao: 'Quickly access what you need most.',
+    },
+  ],
+};
 
-function CartaoAtalho({ icone, tag, titulo, descricao }) {
+const secao = {
+  pt: { label: 'Passo a passo', titulo: 'Seus atalhos principais', desc: 'Tudo o que você precisa a um clique de distância', ir: 'Ir' },
+  en: { label: 'Step by step',  titulo: 'Your main shortcuts',     desc: 'Everything you need just one click away',          ir: 'Go' },
+};
+
+function CartaoAtalho({ icone, tag, titulo, descricao, labelIr }) {
   const Icone = icone;
 
   return (
@@ -37,7 +65,7 @@ function CartaoAtalho({ icone, tag, titulo, descricao }) {
       </div>
 
       <button className="botaoAtalho" type="button">
-        Ir
+        {labelIr}
         <ChevronRight size={14} />
       </button>
     </article>
@@ -45,22 +73,27 @@ function CartaoAtalho({ icone, tag, titulo, descricao }) {
 }
 
 export default function AtalhosRapidos() {
+  const { idioma } = useIdioma();
+  const lista = atalhos[idioma];
+  const s = secao[idioma];
+
   return (
     <section className="atalhosSecao">
       <div className="tituloAtalhos">
-        <span>Passo a passo</span>
-        <h2>Seus atalhos principais</h2>
-        <p>Tudo o que você precisa a um clique de distância</p>
+        <span>{s.label}</span>
+        <h2>{s.titulo}</h2>
+        <p>{s.desc}</p>
       </div>
 
       <div className="gradeAtalhos">
-        {atalhos.map((atalho) => (
+        {lista.map((atalho) => (
           <CartaoAtalho
             key={atalho.titulo}
             icone={atalho.icone}
             tag={atalho.tag}
             titulo={atalho.titulo}
             descricao={atalho.descricao}
+            labelIr={s.ir}
           />
         ))}
       </div>

@@ -1,29 +1,51 @@
-import {Home,
+import {
+Home,
 BookOpen,
 Library,
-FileText,
-GraduationCap,
 MessageSquare,
-LogOut,
 PlayCircle,
 CircleCheck,
 InfoIcon,
+LogOut,
 } from 'lucide-react';
 import './MenuLateral.css';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 
-const itensMenu = [
-    { icone: Home, texto: 'Início', href: '/' },
-    { icone: BookOpen, texto: 'O Livro Principal', href: '/livro' },
-    { icone: Library, texto: 'Biblioteca', href: '/biblioteca' },
-    { icone: MessageSquare, texto: 'Comunidade & Dicas', href: '/comunidade' },
-    { icone: CircleCheck, texto: 'Simulados & Quiz', href: '/simulados' },
-    { icone: PlayCircle, texto: 'Videoaulas', href: '/videoaulas' },
-    { icone: InfoIcon, texto: 'Sobre nós', href: '/sobre' },
-];
+const itensMenu = {
+  pt: [
+    { icone: Home,         texto: 'Início',              href: '/' },
+    { icone: BookOpen,     texto: 'O Livro Principal',   href: '/livro' },
+    { icone: Library,      texto: 'Biblioteca',          href: '/biblioteca' },
+    { icone: MessageSquare,texto: 'Comunidade & Dicas',  href: '/comunidade' },
+    { icone: CircleCheck,  texto: 'Simulados & Quiz',    href: '/simulados' },
+    { icone: PlayCircle,   texto: 'Videoaulas',          href: '/videoaulas' },
+    { icone: InfoIcon,     texto: 'Sobre nós',           href: '/sobre' },
+  ],
+  en: [
+    { icone: Home,         texto: 'Home',                href: '/' },
+    { icone: BookOpen,     texto: 'Main Book',           href: '/livro' },
+    { icone: Library,      texto: 'Library',             href: '/biblioteca' },
+    { icone: MessageSquare,texto: 'Community & Tips',    href: '/comunidade' },
+    { icone: CircleCheck,  texto: 'Practice & Quiz',     href: '/simulados' },
+    { icone: PlayCircle,   texto: 'Video Lessons',       href: '/videoaulas' },
+    { icone: InfoIcon,     texto: 'About us',            href: '/sobre' },
+  ],
+};
 
-function ItemMenu({ icone, texto, ativo = false, href, itemAtivo, aoSair }) {
+// Mapeamento PT -> EN para o itemAtivo (prop vinda de fora ainda usa PT)
+const itemAtivoMap = {
+  'Início':             'Home',
+  'O Livro Principal':  'Main Book',
+  'Biblioteca':         'Library',
+  'Comunidade & Dicas': 'Community & Tips',
+  'Simulados & Quiz':   'Practice & Quiz',
+  'Videoaulas':         'Video Lessons',
+  'Sobre nós':          'About us',
+};
+
+function ItemMenu({ icone, texto, href, itemAtivoTexto, aoSair }) {
   const Icone = icone;
-  const estaAtivo = ativo || itemAtivo === texto; 
+  const estaAtivo = itemAtivoTexto === texto;
 
   if (href) {
     return (
@@ -59,30 +81,39 @@ function ItemMenu({ icone, texto, ativo = false, href, itemAtivo, aoSair }) {
 }
 
 export default function MenuLateral({ itemAtivo = 'Início', aoSair }) {
+  const { idioma } = useIdioma();
+  const lista = itensMenu[idioma];
+
+  // Converte o itemAtivo (sempre em PT) para o texto do idioma atual
+  const itemAtivoTraduzido =
+    idioma === 'en' ? (itemAtivoMap[itemAtivo] ?? itemAtivo) : itemAtivo;
+
+  const labelMenu   = idioma === 'pt' ? 'Menu de navegação' : 'Navigation menu';
+  const labelSair   = idioma === 'pt' ? 'Sair'             : 'Sign out';
+
   return (
     <aside className="menuLateral">
       <div>
         <div className="cabecalhoMenu">
-          <span className="tituloMenu">Menu de navegação</span>
+          <span className="tituloMenu">{labelMenu}</span>
         </div>
 
-        <nav className="listaMenu" aria-label="Menu principal">
-          {itensMenu.map((item) => (
+        <nav className="listaMenu" aria-label={labelMenu}>
+          {lista.map((item) => (
             <ItemMenu
-              key={item.texto}
+              key={item.href}
               icone={item.icone}
               texto={item.texto}
-              ativo={item.ativo}
               href={item.href}
-              itemAtivo={itemAtivo}
+              itemAtivoTexto={itemAtivoTraduzido}
             />
           ))}
         </nav>
       </div>
 
       <div className="menuInferior">
-        <ItemMenu icone={LogOut} texto="Sair" itemAtivo={itemAtivo} aoSair={aoSair} />
+        <ItemMenu icone={LogOut} texto={labelSair} itemAtivoTexto={itemAtivoTraduzido} aoSair={aoSair} />
       </div>
     </aside>
   );
-};
+}

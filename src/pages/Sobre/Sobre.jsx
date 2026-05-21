@@ -14,7 +14,7 @@ export default function Sobre({ usuario, aoSair }) {
 useEffect(() => {
     async function buscarIntegrantes() {
         try {
-            const resposta = await fetch('/api/equipe', {
+            const resposta = await fetch('https://clubelivro-backend-zui4.onrender.com/api/equipe', {
                 //Quando postarmos no Vercel, tem que alterar para 'https://clubelivro-backend-zui4.onrender.com/api/equipe'
                 method: 'GET',
                 headers: {

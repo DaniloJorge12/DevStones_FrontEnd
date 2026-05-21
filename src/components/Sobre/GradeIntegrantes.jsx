@@ -1,50 +1,61 @@
 import CartaoIntegrante from './CartaoIntegrante.jsx';
 import './GradeIntegrantes.css';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
+
+const textos = {
+  pt: {
+    tecnologia: { titulo: 'Equipe de Tecnologia', sub: 'Alunos de Desenvolvimento de Sistemas (SENAI)' },
+    conteudo:   { titulo: 'Equipe de Conteúdo',   sub: 'Alunos de Mecânica e Eletro-eletrônica (SESI)' },
+  },
+  en: {
+    tecnologia: { titulo: 'Technology Team', sub: 'Systems Development Students (SENAI)' },
+    conteudo:   { titulo: 'Content Team',    sub: 'Mechanics and Electrical-Electronics Students (SESI)' },
+  },
+};
 
 export default function GradeIntegrantes({ integrantes = [] }) {
-    const equipeConteudo = integrantes.filter(
-        (integrante) =>
-            integrante.curso === 'Mecânica.' || integrante.curso === 'Eletro-eletrônica.',
-    );
+  const { idioma } = useIdioma();
+  const t = textos[idioma];
 
-    const equipeTecnologia = integrantes.filter(
-        (integrante) =>
-            integrante.curso !== 'Mecânica.' && integrante.curso !== 'Eletro-eletrônica.',
-    );
+  const equipeConteudo = integrantes.filter(
+    (i) => i.curso === 'Mecânica.' || i.curso === 'Eletro-eletrônica.',
+  );
 
-    return (
-        <>
-            <section className="secaoIntegrantes">
-                <div className="tituloSecaoIntegrantes">
-                    <div>
-                        <h2>Equipe de Tecnologia</h2>
+  const equipeTecnologia = integrantes.filter(
+    (i) => i.curso !== 'Mecânica.' && i.curso !== 'Eletro-eletrônica.',
+  );
 
-                        <p>Alunos de Desenvolvimento de Sistemas (SENAI)</p>
-                    </div>
-                </div>
+  return (
+    <>
+      <section className="secaoIntegrantes">
+        <div className="tituloSecaoIntegrantes">
+          <div>
+            <h2>{t.tecnologia.titulo}</h2>
+            <p>{t.tecnologia.sub}</p>
+          </div>
+        </div>
 
-                <div className="gradeIntegrantes">
-                    {equipeTecnologia.map((integrante) => (
-                        <CartaoIntegrante key={integrante.id} integrante={integrante} />
-                    ))}
-                </div>
-            </section>
+        <div className="gradeIntegrantes">
+          {equipeTecnologia.map((integrante) => (
+            <CartaoIntegrante key={integrante.id} integrante={integrante} />
+          ))}
+        </div>
+      </section>
 
-            <section className="secaoIntegrantes">
-                <div className="tituloSecaoIntegrantes">
-                    <div>
-                        <h2>Equipe de Conteúdo</h2>
+      <section className="secaoIntegrantes">
+        <div className="tituloSecaoIntegrantes">
+          <div>
+            <h2>{t.conteudo.titulo}</h2>
+            <p>{t.conteudo.sub}</p>
+          </div>
+        </div>
 
-                        <p>Alunos de Mecânica e Eletro-eletrônica (SESI)</p>
-                    </div>
-                </div>
-
-                <div className="gradeIntegrantes">
-                    {equipeConteudo.map((integrante) => (
-                        <CartaoIntegrante key={integrante.id} integrante={integrante} />
-                    ))}
-                </div>
-            </section>
-        </>
-    );
+        <div className="gradeIntegrantes">
+          {equipeConteudo.map((integrante) => (
+            <CartaoIntegrante key={integrante.id} integrante={integrante} />
+          ))}
+        </div>
+      </section>
+    </>
+  );
 }

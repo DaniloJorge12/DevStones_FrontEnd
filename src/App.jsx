@@ -4,6 +4,7 @@ import Biblioteca from './pages/Biblioteca/Biblioteca.jsx';
 import Sobre from './pages/Sobre/Sobre.jsx';
 import Login from './pages/Login/Login.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
+import LivroPrincipal from './pages/LivroPrincipal/LivroPrincipal.jsx';
 import {
 	limparUsuarioAutenticado,
 	obterAcessoDev,
@@ -28,6 +29,10 @@ function obterPaginaAtual() {
 
 	if (pathname.startsWith('/sobre')) {
 		return 'sobre';
+	}
+
+	if (pathname.startsWith('/livro')) {
+		return 'livro';
 	}
 
 	return 'notfound';
@@ -99,6 +104,15 @@ export default function App() {
 
 	if (paginaEfetiva === 'notfound') {
 		return <NotFound />;
+	}
+
+	if (paginaEfetiva === 'livro') {
+		return (
+			<LivroPrincipal
+				usuario={usuario}
+				aoSair={sair}
+			/>
+		);
 	}
 
 	return <Home usuario={usuario} aoSair={sair} />;
