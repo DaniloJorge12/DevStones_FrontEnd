@@ -1,16 +1,23 @@
 .menuLateral {
   width: 88px;
-  min-height: 100svh;
+  height: 100vh;
+
   border-right: 1px solid #ece6de;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(14px);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   position: sticky;
   top: 0;
-  flex: 0 0 auto;
-  overflow: hidden;
+  align-self: flex-start;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  flex-shrink: 0;
   transition: width 0.25s ease;
 }
 
