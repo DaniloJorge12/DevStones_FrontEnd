@@ -1,0 +1,84 @@
+.aulaDestaque {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 0;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.aulaDestaquePlayer .playerVideo {
+  border-radius: 10px 0 0 10px;
+}
+
+.cartaoAulaDestaque {
+  border: 1px solid #e8e1d8;
+  border-left: 0;
+  border-radius: 0 10px 10px 0;
+  background: #fff;
+  padding: 22px 24px;
+  min-height: 292px;
+  display: flex;
+  flex-direction: column;
+}
+
+.seloAulaCompleta {
+  width: fit-content;
+  border-radius: 4px;
+  background: #f5f0eb;
+  color: #8a3b35;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  margin-bottom: 14px;
+}
+
+.cartaoAulaDestaque h2 {
+  margin: 0;
+  color: #1c1820;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.cartaoAulaDestaque p {
+  margin: 14px 0 0;
+  color: #6d6476;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.dadosAulaDestaque {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #f0e9e1;
+  color: #9c94a6;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.dadosAulaDestaque span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 900px) {
+  .aulaDestaque {
+    grid-template-columns: 1fr;
+  }
+
+  .aulaDestaquePlayer .playerVideo {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .cartaoAulaDestaque {
+    border-left: 1px solid #e8e1d8;
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+    min-height: auto;
+  }
+}

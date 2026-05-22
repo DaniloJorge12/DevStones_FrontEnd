@@ -6,6 +6,7 @@ import Login from './pages/Login/Login.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
 import LivroPrincipal from './pages/LivroPrincipal/LivroPrincipal.jsx';
 import Simulados from './pages/Simulados/Simulados.jsx';
+import VideoAulas from './pages/VideoAulas/VideoAulas.jsx';
 import {
     limparUsuarioAutenticado,
     obterUsuarioAutenticado,
@@ -20,6 +21,7 @@ function obterPaginaAtual() {
     if (pathname.startsWith('/sobre')) return 'sobre';
     if (pathname.startsWith('/livro')) return 'livro';
     if (pathname.startsWith('/simulados')) return 'simulados';
+    if (pathname.startsWith('/videoaulas')) return 'videoaulas';
     return 'notfound';
 }
 
@@ -55,6 +57,7 @@ export default function App() {
     if (paginaEfetiva === 'biblioteca') return <Biblioteca usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'sobre')      return <Sobre usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'simulados')  return <Simulados usuario={usuario} aoSair={sair} />;
+    if (paginaEfetiva === 'videoaulas') return <VideoAulas usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'notfound')   return <NotFound />;
     if (paginaEfetiva === 'livro')      return <LivroPrincipal usuario={usuario} aoSair={sair} />;
 

@@ -1,0 +1,101 @@
+.paginaVideoAulas {
+  min-height: 100svh;
+  display: flex;
+  background: #f8f6f2;
+  color: #2e2a35;
+}
+
+.conteudoVideoAulas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaVideoAulas {
+  flex: 1;
+}
+
+.interiorVideoAulas {
+  width: min(900px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 32px 0 52px;
+}
+
+.topoVideoAulas {
+  margin-bottom: 4px;
+}
+
+.topoVideoAulas h1 {
+  margin: 0 0 5px;
+  color: #1c1820;
+  font-size: 1.42rem;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.topoVideoAulas p {
+  margin: 0;
+  color: #4f4857;
+  font-size: 0.78rem;
+}
+
+.secaoMaisAulas {
+  margin-top: 38px;
+}
+
+.topoMaisAulas {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tituloMaisAulas {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+}
+
+.linhaTituloVideo {
+  width: 12px;
+  height: 3px;
+  border-radius: 99px;
+  background: #c5392f;
+}
+
+.tituloMaisAulas h2 {
+  margin: 0;
+  color: #1c1820;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.estadoVideoAulas {
+  padding: 18px 20px;
+  border: 1px dashed #e1d7cc;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #6d6476;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 1024px) {
+  .interiorVideoAulas {
+    width: min(100%, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 768px) {
+  .interiorVideoAulas {
+    width: calc(100% - 24px);
+    padding-top: 22px;
+  }
+
+  .topoMaisAulas {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
