@@ -41,12 +41,37 @@
   gap: 12px;
 }
 
+.botaoIdiomaAuth {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #e8e1d8;
+  border-radius: 999px;
+  background: #fff;
+  padding: 5px 10px 5px 8px;
+  color: #534d5d;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.divisorIdiomaAuth {
+  width: 1px;
+  height: 13px;
+  background: #e0d8ce;
+}
+
+.idiomaSecundarioAuth {
+  color: #a39cab;
+}
+
 .botaoTrocaAuth {
   border: 0;
   background: transparent;
   color: #6f667a;
   font-size: 0.85rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

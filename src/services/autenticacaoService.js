@@ -1,59 +1,52 @@
-function obterBaseUrl() {
-  return (import.meta.env.VITE_API_BACKEND_URL || '').replace(/\/$/, '');
-}
-
-function obterCabecalhos() {
-  const cabecalhos = {
-    'Content-Type': 'application/json',
-  };
-
-  const apiKey = import.meta.env.VITE_API_KEY;
-
-  if (apiKey) {
-    cabecalhos['x-api-key'] = apiKey;
-  }
-
-  return cabecalhos;
-}
-
-async function interpretarResposta(resposta, mensagemPadrao) {
-  const dados = await resposta.json().catch(() => null);
-
-  if (!resposta.ok) {
-    throw new Error(dados?.error || dados?.message || mensagemPadrao);
-  }
-
-  return dados?.data ?? dados;
-}
+const API = 'https://clubelivro-backend-zui4.onrender.com';
 
 export async function entrarNaConta({ identificador, senha }) {
-  const baseUrl = obterBaseUrl();
+    const resposta = await fetch(`${API}/api/usuario`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': 'livr0',
+        },
+    });
 
-  if (!baseUrl) {
-    throw new Error('Configure VITE_API_BACKEND_URL para conectar ao backend.');
-  }
+    if (!resposta.ok) {
+        throw new Error('Não foi possível conectar ao servidor.');
+    }
 
-  const resposta = await fetch(`${baseUrl}/api/usuario/login`, {
-    method: 'POST',
-    headers: obterCabecalhos(),
-    body: JSON.stringify({ identificador, senha }),
-  });
+    const usuarios = await resposta.json();
+    const lista = Array.isArray(usuarios) ? usuarios : usuarios?.data ?? [];
 
-  return interpretarResposta(resposta, 'Não foi possível entrar na conta.');
+    const campo = identificador.includes('@') ? 'email' : 'username';
+    const encontrado = lista.find(
+        (u) => u[campo]?.toLowerCase() === identificador.toLowerCase().trim()
+    );
+
+    if (!encontrado) {
+        throw new Error('Usuário não encontrado.');
+    }
+
+    if (encontrado.senha !== senha) {
+        throw new Error('Senha incorreta.');
+    }
+
+    return encontrado;
 }
 
 export async function criarContaUsuario(dadosUsuario) {
-  const baseUrl = obterBaseUrl();
+    const resposta = await fetch(`${API}/api/usuario`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': 'livr0',
+        },
+        body: JSON.stringify(dadosUsuario),
+    });
 
-  if (!baseUrl) {
-    throw new Error('Configure VITE_API_BACKEND_URL para conectar ao backend.');
-  }
+    if (!resposta.ok) {
+        const dados = await resposta.json().catch(() => null);
+        throw new Error(dados?.error || dados?.message || 'Não foi possível criar a conta.');
+    }
 
-  const resposta = await fetch(`${baseUrl}/api/usuario`, {
-    method: 'POST',
-    headers: obterCabecalhos(),
-    body: JSON.stringify(dadosUsuario),
-  });
-
-  return interpretarResposta(resposta, 'Não foi possível criar a conta.');
+    const dados = await resposta.json();
+    return dados?.data ?? dados;
 }

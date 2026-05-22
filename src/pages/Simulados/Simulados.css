@@ -1,0 +1,610 @@
+.paginaSimulados {
+  min-height: 100svh;
+  display: flex;
+  background:
+    radial-gradient(circle at top left, rgba(170, 59, 255, 0.07), transparent 22%),
+    linear-gradient(180deg, #f8f6f2 0%, #f2efeb 100%);
+  color: #2e2a35;
+}
+
+.conteudoSimulados {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaSimulados {
+  flex: 1;
+}
+
+.interiorSimulados {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+/* ── Cabeçalho da seção ── */
+.topoSimulados {
+  margin-bottom: 28px;
+}
+
+.topoSimulados h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #1c1820;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.topoSimulados p {
+  margin: 0;
+  color: #7a7283;
+  font-size: 0.9rem;
+}
+
+/* ── Quiz diário ── */
+.quizDiario {
+  background: linear-gradient(120deg, #b91c1c 0%, #dc2626 55%, #b91c1c 100%);
+  border-radius: 18px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quizDiario::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(255,255,255,0.06), transparent 55%);
+  pointer-events: none;
+}
+
+.quizDiarioEsquerda {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.quizDiarioIcone {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.18);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+.quizDiarioTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.quizDiarioBadge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  width: fit-content;
+}
+
+.quizDiarioTexto h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.quizDiarioTexto p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.botaoComecaQuiz {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  flex: 0 0 auto;
+  transition: background 0.2s;
+}
+
+.botaoComecaQuiz:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+/* ── Seção explorar ── */
+.secaoExplorar {
+  margin-top: 36px;
+}
+
+.topoSecaoExplorar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.tituloSecaoExplorar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.decorTitulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linhaDecor {
+  width: 28px;
+  height: 3px;
+  background: #c5392f;
+  border-radius: 99px;
+  flex: 0 0 auto;
+}
+
+.decorTitulo h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1c1820;
+  letter-spacing: -0.02em;
+}
+
+.tituloSecaoExplorar p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #7a7283;
+}
+
+.campoBuscaSimulados {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e5ddd5;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 14px;
+  color: #9c94a6;
+  font-size: 0.84rem;
+  width: 200px;
+}
+
+.campoBuscaSimulados input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  color: #2e2a35;
+  width: 100%;
+  font-size: 0.84rem;
+}
+
+.campoBuscaSimulados input::placeholder {
+  color: #b0a8ba;
+}
+
+/* ── Grade de livros ── */
+.gradeLivrosSimulados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cartaoLivroSimulado {
+  background: #fff;
+  border: 1px solid #ede5db;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.cartaoLivroSimulado:hover {
+  box-shadow: 0 8px 28px rgba(39,31,44,0.09);
+  border-color: #ddd4c8;
+}
+
+.cartaoLivroTopo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cartaoLivroCapaWrap {
+  width: 36px;
+  height: 46px;
+  border-radius: 6px;
+  background: #f2ede6;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.cartaoLivroCapaWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cartaoLivroCapaIcone {
+  color: #b0a8ba;
+}
+
+.cartaoLivroInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.cartaoLivroInfo h3 {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1c1820;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cartaoLivroInfo span {
+  font-size: 0.78rem;
+  color: #9c94a6;
+}
+
+.badgeTema {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #fff0f0;
+  color: #c5392f;
+  border-radius: 6px;
+  padding: 2px 7px;
+  width: fit-content;
+}
+
+.cartaoLivroResumo {
+  font-size: 0.82rem;
+  color: #6d6476;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  flex: 1;
+}
+
+.cartaoLivroRodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #f2ede6;
+  margin-top: auto;
+}
+
+.totalQuizzes {
+  font-size: 0.78rem;
+  color: #9c94a6;
+  font-weight: 600;
+}
+
+.botaoAcessarQuiz {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #ede5db;
+  border-radius: 999px;
+  background: transparent;
+  color: #3f3b46;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.botaoAcessarQuiz:hover {
+  background: #fff0f0;
+  border-color: #f5c0bb;
+  color: #c5392f;
+}
+
+/* ── Estado vazio / erro / carregando ── */
+.estadoSimulados {
+  padding: 18px 20px;
+  border: 1px dashed #e1d7cc;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.82);
+  color: #6d6476;
+  font-size: 0.9rem;
+}
+
+/* ── Modal de Quiz ── */
+.overlayQuiz {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 24, 32, 0.55);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modalQuiz {
+  background: #fff;
+  border-radius: 20px;
+  width: min(640px, 100%);
+  max-height: 90svh;
+  overflow-y: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 24px 60px rgba(28,24,32,0.18);
+}
+
+.modalQuizTopo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modalQuizTopo h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1c1820;
+}
+
+.modalQuizTopo p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #9c94a6;
+}
+
+.botaoFecharModal {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ede5db;
+  border-radius: 50%;
+  background: transparent;
+  color: #9c94a6;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  transition: background 0.15s;
+}
+
+.botaoFecharModal:hover {
+  background: #f7f3ef;
+  color: #3f3b46;
+}
+
+.progressoQuiz {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressoQuizInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #9c94a6;
+  font-weight: 600;
+}
+
+.barraProgressoQuiz {
+  height: 6px;
+  background: #f2ede6;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.barraProgressoQuizPreenchida {
+  height: 100%;
+  background: linear-gradient(90deg, #c5392f, #e05a50);
+  border-radius: 99px;
+  transition: width 0.35s ease;
+}
+
+.perguntaQuiz {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1c1820;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.opcoesQuiz {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcaoQuiz {
+  border: 1.5px solid #ede5db;
+  border-radius: 12px;
+  background: #faf8f5;
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 0.88rem;
+  color: #3f3b46;
+  line-height: 1.45;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.opcaoQuiz:hover:not(:disabled) {
+  border-color: #c5392f;
+  background: #fff6f5;
+}
+
+.opcaoQuiz:disabled {
+  cursor: default;
+}
+
+.opcaoCorreta {
+  border-color: #16a34a !important;
+  background: #f0fdf4 !important;
+  color: #15803d;
+  font-weight: 700;
+}
+
+.opcaoErrada {
+  border-color: #dc2626 !important;
+  background: #fef2f2 !important;
+  color: #b91c1c;
+}
+
+.explicacaoQuiz {
+  background: #f8f6f2;
+  border-left: 3px solid #c5392f;
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  font-size: 0.84rem;
+  color: #4a4552;
+  line-height: 1.55;
+}
+
+.explicacaoQuiz strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #1c1820;
+}
+
+.botaoProximaQuestao {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #c5392f;
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background 0.18s;
+}
+
+.botaoProximaQuestao:hover {
+  background: #a91f1b;
+}
+
+.resultadoQuiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.resultadoQuizIcone {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.resultadoQuiz h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1c1820;
+}
+
+.resultadoQuiz p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7a7283;
+}
+
+.resultadoQuizPontos {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #c5392f;
+  letter-spacing: -0.03em;
+}
+
+.botoesResultado {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.botaoReiniciar {
+  border: 1.5px solid #ede5db;
+  background: #fff;
+  color: #3f3b46;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+
+.botaoReiniciar:hover {
+  background: #f7f3ef;
+}
+
+@media (max-width: 1024px) {
+  .gradeLivrosSimulados {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .interiorSimulados {
+    width: min(100%, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 768px) {
+  .gradeLivrosSimulados {
+    grid-template-columns: 1fr;
+  }
+  .topoSecaoExplorar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .campoBuscaSimulados {
+    width: 100%;
+  }
+  .quizDiario {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px;
+  }
+  .interiorSimulados {
+    width: calc(100% - 24px);
+    padding-top: 20px;
+  }
+}

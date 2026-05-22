@@ -1,5 +1,57 @@
 import { Eye, EyeOff } from 'lucide-react';
 import './FormularioAuth.css';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
+
+const textos = {
+  pt: {
+    entrar: 'Entrar',
+    criar: 'Criar Conta',
+    tituloEntrar: 'Entre na sua conta',
+    tituloCriar: 'Crie sua conta',
+    subtituloEntrar: 'Use seu e-mail ou usuário para acessar.',
+    subtituloCriar: 'Preencha os dados básicos para começar.',
+    nome: 'Nome',
+    nomePlaceholder: 'Nome completo',
+    usuario: 'Usuário',
+    usuarioPlaceholder: 'Escolha um usuário',
+    idade: 'Idade',
+    emailOuUsuario: 'Email ou usuário',
+    email: 'Email',
+    emailPlaceholder: 'voce@devstone.com ou seu.usuario',
+    emailPlaceholderCriar: 'voce@devstone.com',
+    senha: 'Senha',
+    senhaPlaceholder: 'Digite a senha',
+    confirmarSenha: 'Confirmar senha',
+    confirmarSenhaPlaceholder: 'Repita a senha',
+    aguarde: 'Aguarde...',
+    acessar: 'Acessar Plataforma',
+    finalizar: 'Finalizar Registro',
+  },
+  en: {
+    entrar: 'Sign In',
+    criar: 'Create Account',
+    tituloEntrar: 'Sign in to your account',
+    tituloCriar: 'Create your account',
+    subtituloEntrar: 'Use your email or username to access.',
+    subtituloCriar: 'Fill in the basic info to get started.',
+    nome: 'Name',
+    nomePlaceholder: 'Full name',
+    usuario: 'Username',
+    usuarioPlaceholder: 'Choose a username',
+    idade: 'Age',
+    emailOuUsuario: 'Email or username',
+    email: 'Email',
+    emailPlaceholder: 'you@devstone.com or your.username',
+    emailPlaceholderCriar: 'you@devstone.com',
+    senha: 'Password',
+    senhaPlaceholder: 'Enter password',
+    confirmarSenha: 'Confirm password',
+    confirmarSenhaPlaceholder: 'Repeat password',
+    aguarde: 'Please wait...',
+    acessar: 'Access Platform',
+    finalizar: 'Complete Registration',
+  },
+};
 
 export default function FormularioAuth({
   modo,
@@ -15,6 +67,9 @@ export default function FormularioAuth({
   aoAlternarSenha,
   aoSubmit,
 }) {
+  const { idioma } = useIdioma();
+  const t = textos[idioma] ?? textos.pt;
+
   return (
     <section className="formularioAuth">
       <div className="abasAuth">
@@ -23,55 +78,51 @@ export default function FormularioAuth({
           className={modo === 'entrar' ? 'abaAtiva' : ''}
           onClick={() => aoMudarModo('entrar')}
         >
-          Entrar
+          {t.entrar}
         </button>
         <button
           type="button"
           className={modo === 'criar' ? 'abaAtiva' : ''}
           onClick={() => aoMudarModo('criar')}
         >
-          Criar Conta
+          {t.criar}
         </button>
       </div>
 
       <div className="cabecalhoFormularioAuth">
-        <h2>{modo === 'entrar' ? 'Entre na sua conta' : 'Crie sua conta'}</h2>
-        <p>
-          {modo === 'entrar'
-            ? 'Use seu e-mail ou usuário para acessar.'
-            : 'Preencha os dados básicos para começar.'}
-        </p>
+        <h2>{modo === 'entrar' ? t.tituloEntrar : t.tituloCriar}</h2>
+        <p>{modo === 'entrar' ? t.subtituloEntrar : t.subtituloCriar}</p>
       </div>
 
       <form className="camposAuth" onSubmit={aoSubmit}>
         {modo === 'criar' && (
           <>
             <label>
-              <span>Nome</span>
+              <span>{t.nome}</span>
               <input
                 name="nome"
                 type="text"
                 value={dadosCadastro.nome}
                 onChange={aoMudarCadastro}
-                placeholder="Nome completo"
+                placeholder={t.nomePlaceholder}
                 required
               />
             </label>
 
             <div className="duasColunasAuth">
               <label>
-                <span>Usuário</span>
+                <span>{t.usuario}</span>
                 <input
                   name="username"
                   type="text"
                   value={dadosCadastro.username}
                   onChange={aoMudarCadastro}
-                  placeholder="Escolha um usuário"
+                  placeholder={t.usuarioPlaceholder}
                 />
               </label>
 
               <label>
-                <span>Idade</span>
+                <span>{t.idade}</span>
                 <input
                   name="idade"
                   type="number"
@@ -86,27 +137,27 @@ export default function FormularioAuth({
         )}
 
         <label>
-          <span>{modo === 'entrar' ? 'Email ou usuário' : 'Email'}</span>
+          <span>{modo === 'entrar' ? t.emailOuUsuario : t.email}</span>
           <input
             name={modo === 'entrar' ? 'identificador' : 'email'}
             type={modo === 'entrar' ? 'text' : 'email'}
             value={modo === 'entrar' ? dadosLogin.identificador : dadosCadastro.email}
             onChange={modo === 'entrar' ? aoMudarLogin : aoMudarCadastro}
-            placeholder={modo === 'entrar' ? 'voce@devstone.com ou seu.usuario' : 'voce@devstone.com'}
+            placeholder={modo === 'entrar' ? t.emailPlaceholder : t.emailPlaceholderCriar}
             required
           />
         </label>
 
         <div className="duasColunasAuth">
           <label>
-            <span>Senha</span>
+            <span>{t.senha}</span>
             <div className="campoSenhaAuth">
               <input
                 name="senha"
                 type={mostrarSenha ? 'text' : 'password'}
                 value={modo === 'entrar' ? dadosLogin.senha : dadosCadastro.senha}
                 onChange={modo === 'entrar' ? aoMudarLogin : aoMudarCadastro}
-                placeholder="Digite a senha"
+                placeholder={t.senhaPlaceholder}
                 required
               />
               <button type="button" onClick={aoAlternarSenha} aria-label="Mostrar senha">
@@ -117,13 +168,13 @@ export default function FormularioAuth({
 
           {modo === 'criar' && (
             <label>
-              <span>Confirmar senha</span>
+              <span>{t.confirmarSenha}</span>
               <input
                 name="confirmarSenha"
                 type={mostrarSenha ? 'text' : 'password'}
                 value={dadosCadastro.confirmarSenha}
                 onChange={aoMudarCadastro}
-                placeholder="Repita a senha"
+                placeholder={t.confirmarSenhaPlaceholder}
                 required
               />
             </label>
@@ -134,11 +185,7 @@ export default function FormularioAuth({
         {mensagem && <div className="mensagemAuth mensagemSucessoAuth">{mensagem}</div>}
 
         <button className="botaoPrincipalAuth" type="submit" disabled={carregando}>
-          {carregando
-            ? 'Aguarde...'
-            : modo === 'entrar'
-              ? 'Acessar Plataforma'
-              : 'Finalizar Registro'}
+          {carregando ? t.aguarde : modo === 'entrar' ? t.acessar : t.finalizar}
         </button>
       </form>
     </section>
