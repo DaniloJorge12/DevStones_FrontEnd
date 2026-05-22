@@ -5,7 +5,7 @@ import { useIdioma } from '../../contexts/IdiomaContext.jsx'
 const textos = {
   pt: {
     badge: 'ERRO DE ROTA',
-    titulo: 'Parece que você encontrou',
+    titulo: 'Parece que você encontrou ',
     subtitulo: 'uma pedra no caminho.',
     descricao: 'A página que você está procurando não existe, foi movida ou você não tem permissão para acessá-la.',
     voltar: 'Voltar ao Início',
@@ -41,11 +41,29 @@ export default function NotFound() {
         <h2 className="subtitle">{t.subtitulo}</h2>
         <p className="description">{t.descricao}</p>
 
-        <div className="actions">
-          <button className="btn btn-primary" onClick={() => window.location.assign('/')}>{t.voltar}</button>
-          <a className="btn btn-outline" href="mailto:suporte@exemplo.com?subject=Reportar%20Erro%20de%20Rota">{t.reportar}</a>
+        <div className="english-note">
+          <strong>ENGLISH:</strong>
+          {idioma === 'pt' ? 'It looks like you found a stone in your path. The page you are looking for does not exist, has been moved, or you do not have permission to access it.' : t.descricao}
         </div>
-      </div>
+        <div className="actions">
+  <button
+    className="btn btn-primary"
+    onClick={() => window.location.assign('/')}
+  >
+    {t.voltar}
+  </button>
+
+  <button
+    className="btn btn-outline"
+    onClick={() =>
+      window.location.href =
+        'mailto:suporte@exemplo.com?subject=Reportar%20Erro%20de%20Rota'
+    }
+  >
+    {t.reportar}
+  </button>
+</div>
+</div>
     </div>
   )
 }

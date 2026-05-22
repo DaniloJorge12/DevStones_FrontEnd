@@ -1,9 +1,10 @@
-    .notfound-page {
+.notfound-page {
   min-height: calc(100vh - 80px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 48px;
+  gap: 24px;
   padding: 48px 24px;
   background: #fbf7f4;
 }
@@ -11,12 +12,13 @@
 .notfound-404 {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 24px;
   color: #e6e6e6;
   font-weight: 700;
-  font-size: 140px;
+  font-size: 200px;
   line-height: 1;
   user-select: none;
+  margin-bottom: 32px;
 }
 
 .notfound-404 .num {
@@ -25,8 +27,8 @@
 }
 
 .notfound-404 .hex {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   display: block;
 }
 
@@ -35,7 +37,7 @@
   background: #fff;
   border-radius: 12px;
   padding: 28px;
-  box-shadow: 0 8px 24px rgba(16,24,40,0.08);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
   text-align: left;
 }
 
@@ -71,16 +73,27 @@
 }
 
 .english-note {
-  background: #f3f4f6;
-  padding: 10px;
+  background: #f9fafb;
+  padding: 12px 14px;
   border-radius: 8px;
   color: #6b7280;
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.5;
   margin-bottom: 18px;
+  border-left: 3px solid #d1d5db;
+}
+
+.english-note strong {
+  display: block;
+  font-size: 11px;
+  color: #374151;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
 }
 
 .actions {
   display: flex;
+  flex-direction: row;
   gap: 12px;
 }
 
@@ -91,6 +104,10 @@
   text-decoration: none;
   cursor: pointer;
   border: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary {
@@ -102,23 +119,17 @@
   background: transparent;
   color: #111827;
   border: 1px solid #e6e6e9;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 900px) {
-  .notfound-page {
-    flex-direction: column;
-  }
-
   .notfound-404 {
-    font-size: 92px;
+    font-size: 160px;
+    gap: 16px;
   }
 
   .notfound-404 .hex {
-    width: 72px;
-    height: 72px;
+    width: 140px;
+    height: 140px;
   }
 
   .notfound-card {
