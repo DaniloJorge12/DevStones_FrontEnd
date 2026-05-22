@@ -21,21 +21,25 @@ export default function HeroSection() {
   const t = textos[idioma];
 
   return (
-    <section className="heroSection">
-      <div className="heroFundo" aria-hidden="true" />
+      <section className="heroSection">
+          <div className="heroFundo" aria-hidden="true" />
 
-      <div className="heroTexto">
-        <span className="seloHero">{t.selo}</span>
-        <h1>{t.titulo}</h1>
-        <p>{t.descricao}</p>
-      </div>
+          <div className="heroTexto">
+              <span className="seloHero">{t.selo}</span>
+              <h1>{t.titulo}</h1>
+              <p>{t.descricao}</p>
+          </div>
 
-      <div className="heroImagem">
-        <img
-          src="/src/assets/img/grupo.png"
-          alt={idioma === 'pt' ? "Estudantes em ambiente de estudo" : "Students in a study environment"}
-        />
-      </div>
-    </section>
+          <div className="heroImagem">
+              <img
+                  src="https://ejriuxfncwbsvebswmtg.supabase.co/storage/v1/object/public/arquivos/grupo.png"
+                  alt={
+                      idioma === 'pt'
+                          ? 'Estudantes em ambiente de estudo'
+                          : 'Students in a study environment'
+                  }
+              />
+          </div>
+      </section>
   );
 }

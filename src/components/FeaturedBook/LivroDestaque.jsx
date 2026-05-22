@@ -24,28 +24,28 @@ export default function LivroDestaque() {
   const t = textos[idioma];
 
   return (
-    <section className="livroDestaque">
-      <div className="capaLivro">
-        <img
-          src="/src/assets/img/book.png"
-          alt="Capa do livro Caminho das Pedras"
-        />
-      </div>
+      <section className="livroDestaque">
+          <div className="capaLivro">
+              <img
+                  src="https://ejriuxfncwbsvebswmtg.supabase.co/storage/v1/object/public/arquivos/book.png"
+                  alt="Capa do livro Caminho das Pedras"
+              />
+          </div>
 
-      <div className="textoLivro">
-        <div className="seloLivro">
-          <span className="pontoLivro" aria-hidden="true" />
-          {t.selo}
-        </div>
+          <div className="textoLivro">
+              <div className="seloLivro">
+                  <span className="pontoLivro" aria-hidden="true" />
+                  {t.selo}
+              </div>
 
-        <h2>{t.titulo}</h2>
-        <p>{t.descricao}</p>
+              <h2>{t.titulo}</h2>
+              <p>{t.descricao}</p>
 
-        <button className="botaoLivro" type="button">
-          {t.botao}
-          <ChevronRight size={18} />
-        </button>
-      </div>
-    </section>
+              <button className="botaoLivro" type="button">
+                  {t.botao}
+                  <ChevronRight size={18} />
+              </button>
+          </div>
+      </section>
   );
 }
