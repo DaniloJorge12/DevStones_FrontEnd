@@ -1,0 +1,132 @@
+.listaPublicacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cartaoPublicacao {
+  border: 1px solid #e8e1d8;
+  border-radius: 10px;
+  background: #fff;
+  padding: 16px 18px;
+}
+
+.topoPublicacao {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.autorPublicacao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarPublicacao {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e2ded8;
+  color: #655d6f;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.autorPublicacao strong {
+  display: block;
+  color: #1c1820;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.autorPublicacao span {
+  display: block;
+  color: #a39cab;
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
+.cartaoPublicacao h2 {
+  margin: 0;
+  color: #1c1820;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.conteudoPublicacao {
+  margin-top: 14px;
+}
+
+.linhaTituloPublicacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.conteudoPublicacao p {
+  margin: 0;
+  color: #5f5668;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.acoesPublicacao {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.acoesPublicacao button,
+.rodapePublicacao button {
+  border: 1px solid #e8e1d8;
+  background: transparent;
+  color: #8a8292;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acoesPublicacao button {
+  width: 28px;
+  height: 28px;
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.acoesPublicacao button:hover,
+.rodapePublicacao button:hover {
+  color: #c5392f;
+  border-color: #efc4bf;
+}
+
+.rodapePublicacao {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #9c94a6;
+  font-size: 0.72rem;
+}
+
+.rodapePublicacao button {
+  border-color: transparent;
+  border-radius: 999px;
+  gap: 6px;
+  padding: 4px 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .topoPublicacao {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

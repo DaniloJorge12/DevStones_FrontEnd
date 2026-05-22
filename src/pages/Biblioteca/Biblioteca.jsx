@@ -30,6 +30,11 @@ const fontesBiblioteca = [
         url: 'https://atividade-portugues-backend.onrender.com/api/livro',
         apiKey: 'chaveSecreta',
     },
+    {
+        nome: 'Os Ratos',
+        url: 'https://ratsjs.onrender.com/api/livros',
+        apiKey: 'Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO',
+    },
 ];
 
 function extrairListaLivros(dados) {

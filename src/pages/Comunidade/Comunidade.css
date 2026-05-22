@@ -1,0 +1,82 @@
+.paginaComunidade {
+  min-height: 100svh;
+  display: flex;
+  background: #f8f6f2;
+  color: #2e2a35;
+}
+
+.conteudoComunidade {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaComunidade {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.interiorComunidade {
+  width: min(620px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 44px 0 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.topoComunidade {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.topoComunidade span {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  background: #fff0f0;
+  color: #c5392f;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  margin-bottom: 12px;
+}
+
+.topoComunidade h1 {
+  margin: 0 0 8px;
+  color: #1c1820;
+  font-size: 1.52rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.topoComunidade p {
+  margin: 0;
+  color: #3f3b46;
+  font-size: 0.82rem;
+}
+
+.estadoComunidade {
+  padding: 14px 16px;
+  border: 1px dashed #e1d7cc;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #6d6476;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1024px) {
+  .interiorComunidade {
+    width: min(100%, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 768px) {
+  .interiorComunidade {
+    width: calc(100% - 24px);
+    padding-top: 22px;
+  }
+}

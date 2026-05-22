@@ -1,3 +1,6 @@
+const API = 'https://clubelivro-backend-zui4.onrender.com';
+const API_KEY = 'livr0';
+
 function normalizarLivro(livro) {
   return {
     id: livro.id,
@@ -13,15 +16,8 @@ function normalizarLivro(livro) {
 }
 
 export async function buscarLivrosBiblioteca() {
-  const baseUrl = import.meta.env.VITE_API_BIBLIOTECA_URL;
-
-  if (!baseUrl) {
-    return [];
-  }
-
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const resposta = await fetch(`${baseUrl.replace(/\/$/, '')}/api/livro`, {
-    headers: apiKey ? { 'x-api-key': apiKey } : undefined,
+  const resposta = await fetch(`${API}/api/livro`, {
+    headers: { 'x-api-key': API_KEY },
   });
 
   if (!resposta.ok) {
