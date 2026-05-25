@@ -22,7 +22,6 @@ function normalizarConteudo(conteudo) {
         tipoMaterial: tipoNormalizado,
         descricao: conteudo.descricaoDica || '',
         descricaoEn: conteudo.descricaoDica_en || conteudo.descricaoDica || '',
-        curtidas: conteudo.curtidasDica || 0,
         material: conteudo.material,
         original: conteudo,
     };

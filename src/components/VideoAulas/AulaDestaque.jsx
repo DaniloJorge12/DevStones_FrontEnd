@@ -16,10 +16,6 @@ export default function AulaDestaque({ aula }) {
 
                 <div className="dadosAulaDestaque">
                     <span>Livro #{aula.idDoLivro}</span>
-                    <span>
-                        <Heart size={13} />
-                        {aula.curtidas} curtidas
-                    </span>
                 </div>
             </article>
         </section>
