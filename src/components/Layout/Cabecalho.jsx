@@ -8,7 +8,7 @@ export default function Cabecalho({ usuario, aoSair }) {
     const emailExibido = usuario?.email || 'acesso@devstone';
 
     const fotoPadrao =
-        'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/Gemini_Generated_Image_n3chkun3chkun3ch.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9HZW1pbmlfR2VuZXJhdGVkX0ltYWdlX24zY2hrdW4zY2hrdW4zY2gucG5nIiwiaWF0IjoxNzc5NzI5MzIzLCJleHAiOjE4MTEyNjUzMjN9.rkSvST-GWX2LlJdco7S5eSxmZkSYLUrDkeYWaC5oTjY';
+        'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/profile.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9wcm9maWxlLnBuZyIsImlhdCI6MTc3OTczMTA0MCwiZXhwIjoxODExMjY3MDQwfQ.k4u49L8GnSxyX2erfF9CVelwH5FbiwrRV6taVOMIOug';
 
     const [menuAberto, setMenuAberto] = useState(false);
     const [fotoPerfil, setFotoPerfil] = useState(fotoPadrao);
