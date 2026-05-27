@@ -31,3 +31,22 @@ export async function buscarLivros() {
 
     return await resposta.json();
 }
+
+export async function gerarQuestoesIA(tema, quantidade = 5) {
+    const resposta = await fetch(
+        `${API}/api/simulados/gerar-questoes?tema=${encodeURIComponent(tema)}&quantidade=${quantidade}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'livr0',
+            },
+        }
+    );
+
+    if (!resposta.ok) {
+        throw new Error('Não foi possível gerar questões com IA. Tente novamente.');
+    }
+
+    return await resposta.json();
+}
