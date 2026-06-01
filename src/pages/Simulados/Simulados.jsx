@@ -174,13 +174,17 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
         setGerando(true);
         try {
             const resultado = await gerarQuestoesIA(temaLimpo, qtd);
-            const questoes  = montarQuestoesIA(resultado.objetoGerado.questoes, idioma);
+            const listaQuestoes = resultado?.objetoGerado?.questoes;
+            if (!Array.isArray(listaQuestoes) || listaQuestoes.length === 0) {
+                throw new Error('O servidor retornou uma resposta inválida. Tente novamente.');
+            }
+            const questoes = montarQuestoesIA(listaQuestoes, idioma);
             onQuestoesGeradas(
                 { titulo: temaLimpo, autor: 'Gerado por IA' },
                 questoes
             );
         } catch (e) {
-            setErro(t.iaErro);
+            setErro(e.message || t.iaErro);
         } finally {
             setGerando(false);
         }
@@ -196,10 +200,8 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
 
             <div className="secaoGerarIA">
 
-                {/* grade decorativa de fundo */}
                 <div className="gerarIAGrade" aria-hidden="true" />
 
-                {/* círculo decorativo direita */}
                 <div className="gerarIACirculo" aria-hidden="true" />
 
                 <div className="gerarIAConteudo">
@@ -214,7 +216,6 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
                     </div>
 
                     <div className="gerarIAControles">
-                        {/* input + botão na mesma linha */}
                         <div className="gerarIALinha">
                             <input
                                 type="text"
@@ -239,7 +240,6 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
                             </button>
                         </div>
 
-                        {/* select de quantidade embaixo, discreto */}
                         <div className="gerarIASelectWrap">
                             <label className="gerarIALabel">{t.iaQtd}</label>
                             <select
@@ -480,13 +480,11 @@ export default function Simulados({ usuario, aoSair }) {
                 <main className="areaSimulados">
                     <div className="interiorSimulados">
 
-                        {/* ── Cabeçalho ── */}
                         <div className="topoSimulados">
                             <h1>{t.titulo}</h1>
                             <p>{t.subtitulo}</p>
                         </div>
 
-                        {/* ── Quiz diário ── */}
                         <div className="quizDiario">
                             <div className="quizDiarioEsquerda">
                                 <div className="quizDiarioIcone">
@@ -509,14 +507,12 @@ export default function Simulados({ usuario, aoSair }) {
                             </button>
                         </div>
 
-                        {/* ── Seção de geração por IA ── */}
                         <SecaoGerarIA
                             t={t}
                             idioma={idioma}
                             onQuestoesGeradas={abrirQuizIA}
                         />
 
-                        {/* ── Explorar por obra ── */}
                         <section className="secaoExplorar">
                             <div className="topoSecaoExplorar">
                                 <div className="tituloSecaoExplorar">
