@@ -339,74 +339,6 @@
   animation: spin 0.8s linear infinite;
 }
 
-.overlayGerandoIA {
-  position: fixed;
-  inset: 0;
-  background: rgba(28, 24, 32, 0.65);
-  backdrop-filter: blur(6px);
-  display: grid;
-  place-items: center;
-  z-index: 200;
-  padding: 24px;
-}
-
-.modalGerandoIA {
-  background: #ffffff;
-  border: 1.5px solid #ede5db;
-  border-radius: 22px;
-  width: min(460px, 100%);
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(28, 24, 32, 0.18);
-  border-top: 4px solid #c5392f;
-}
-
-.gerandoIAVideo {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #1c1820;
-  overflow: hidden;
-}
-
-.gerandoIAVideo video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.gerandoIATexto {
-  padding: 22px 28px 26px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.gerandoIASpinner {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #fff0f0;
-  display: grid;
-  place-items: center;
-  color: #c5392f;
-}
-
-.gerandoIATexto h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #1c1820;
-  letter-spacing: -0.01em;
-}
-
-.gerandoIATexto p {
-  margin: 0;
-  font-size: 0.82rem;
-  color: #7a7283;
-  line-height: 1.5;
-}
 
 @keyframes shimmer {
   0%   { background-position: 200% 0; }
@@ -893,4 +825,116 @@
   .gerarIABotao {
     justify-content: center;
   }
+}
+
+.areaGerandoIA {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: #fff;
+  min-height: calc(100svh - 120px);
+}
+
+.telaGerandoIA {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: min(640px, 100%);
+  animation: entradaSuave 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.telaGerandoIAVideo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1c1820;
+}
+
+.telaGerandoIAVideo video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.telaGerandoIATexto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: #7a7283;
+}
+
+.telaGerandoIATexto h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1c1820;
+  letter-spacing: -0.02em;
+}
+
+.telaGerandoIATexto p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #7a7283;
+  line-height: 1.5;
+}
+
+.telaQuizPronto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  animation: saidaSuave 0.5s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  animation-delay: 2.5s;
+}
+
+.telaQuizProntoEmoji {
+  font-size: 4rem;
+  line-height: 1;
+  animation: pula 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.telaQuizPronto h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #1c1820;
+  letter-spacing: -0.03em;
+  animation: entradaSuave 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+@keyframes entradaSuave {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes saidaSuave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pula {
+  0%   { transform: scale(0.5) translateY(20px); opacity: 0; }
+  70%  { transform: scale(1.15) translateY(-6px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
