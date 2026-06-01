@@ -1,4 +1,4 @@
-const API = 'https://clubelivro-backend-zui4.onrender.com';
+const API = 'https://devstones-backend.onrender.com';
 
 export async function entrarNaConta({ identificador, senha }) {
     const resposta = await fetch(`${API}/api/usuario`, {

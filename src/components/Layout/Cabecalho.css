@@ -1,201 +1,200 @@
 .cabecalho {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  padding: 18px 32px;
-  border-bottom: 1px solid rgba(226, 218, 208, 0.8);
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(14px);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 32px;
+    border-bottom: 1px solid rgba(226, 218, 208, 0.8);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(14px);
 }
 
 .marca {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nomeMarca {
     font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: -0.03em;
-  color: #221f27;
+    color: #221f27;
 }
 
 .nomeMarca span {
-  color: #a91f1b;
+    color: #a91f1b;
 }
 
 .acoesCabecalho {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .botaoIdioma {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #e8e1d8;
-  border-radius: 999px;
-  background: #fff;
-  padding: 6px 10px 6px 8px;
-  color: #534d5d;
-  font-size: 0.85rem;
-  font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #e8e1d8;
+    border-radius: 999px;
+    background: #fff;
+    padding: 6px 10px 6px 8px;
+    color: #534d5d;
+    font-size: 0.85rem;
+    font-weight: 700;
 }
 
 .divisorIdioma {
-  width: 1px;
-  height: 14px;
-  background: #e0d8ce;
+    width: 1px;
+    height: 14px;
+    background: #e0d8ce;
 }
 
 .idiomaSecundario {
-  color: #a39cab;
+    color: #a39cab;
 }
 
 .botaoNotificacao {
-  width: 38px;
-  height: 38px;
-  border: 1px solid #e8e1d8;
-  border-radius: 50%;
-  background: #fff;
-  display: grid;
-  place-items: center;
-  color: #6f667a;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #e8e1d8;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    color: #6f667a;
 }
 
 .perfilCabecalho {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-left: 16px;
-  border-left: 1px solid #ede5db;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 16px;
+    border-left: 1px solid #ede5db;
 }
 
 .botaoEntrarCabecalho,
 .botaoSairCabecalho {
-  border: 1px solid #e8e1d8;
-  background: #fff;
-  color: #534d5d;
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 0.82rem;
-  font-weight: 800;
+    border: 1px solid #e8e1d8;
+    background: #fff;
+    color: #534d5d;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    font-weight: 800;
 }
 
 .botaoSairCabecalho {
-  margin-left: 4px;
+    margin-left: 4px;
 }
 
 .dadosPerfil {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
 }
 
 .dadosPerfil strong {
-  font-size: 0.95rem;
-  color: #221f27;
+    font-size: 0.95rem;
+    color: #221f27;
 }
 
 .dadosPerfil span {
-  font-size: 0.78rem;
-  color: #a39cab;
+    font-size: 0.78rem;
+    color: #a39cab;
 }
 
-
 .avatarPerfil {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 @media (max-width: 768px) {
-  .cabecalho {
-    padding: 14px 16px;
-  }
+    .cabecalho {
+        padding: 14px 16px;
+    }
 
-  .dadosPerfil {
-    display: none;
-  }
+    .dadosPerfil {
+        display: none;
+    }
 
-  .acoesCabecalho {
-    gap: 10px;
-  }
+    .acoesCabecalho {
+        gap: 10px;
+    }
 }
 .perfilCabecalho {
-  position: relative;
+    position: relative;
 }
 
 .avatarPerfil {
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .avatarPerfil:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .menuPerfil {
-  position: absolute;
-  top: 58px;
-  right: 0;
-  width: 220px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(18px);
-  border: 1px solid #ece6de;
-  border-radius: 18px;
-  padding: 8px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  z-index: 999;
-  animation: aparecerMenu 0.2s ease;
+    position: absolute;
+    top: 58px;
+    right: 0;
+    width: 220px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(18px);
+    border: 1px solid #ece6de;
+    border-radius: 18px;
+    padding: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    z-index: 999;
+    animation: aparecerMenu 0.2s ease;
 }
 
 .itemMenuPerfil {
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 12px 14px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.92rem;
-  cursor: pointer;
-  color: #2d2833;
-  transition: background 0.2s ease;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 12px 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    cursor: pointer;
+    color: #2d2833;
+    transition: background 0.2s ease;
 }
 
 .itemMenuPerfil:hover {
-  background: #f6f3ee;
+    background: #f6f3ee;
 }
 
 .itemMenuPerfil.sair {
-  color: #a91f1b;
+    color: #a91f1b;
 }
 
 @keyframes aparecerMenu {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

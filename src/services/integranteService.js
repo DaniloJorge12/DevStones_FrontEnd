@@ -1,5 +1,5 @@
 export async function buscarIntegrantes() {
-    const resposta = await fetch('https://clubelivro-backend-zui4.onrender.com/api/equipe', {
+    const resposta = await fetch('https://devstones-backend.onrender.com/api/equipe', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

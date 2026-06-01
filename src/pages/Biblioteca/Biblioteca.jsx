@@ -17,7 +17,7 @@ const filtros = [
 const fontesBiblioteca = [
     {
         nome: 'DevStones',
-        url: 'https://clubelivro-backend-zui4.onrender.com/api/livro',
+        url: 'https://devstones-backend.onrender.com/api/livro',
         apiKey: 'livr0',
     },
     {
