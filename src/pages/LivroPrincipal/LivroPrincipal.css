@@ -1,4 +1,3 @@
-/* ── Layout principal ── */
 .paginaLivro {
   display: flex;
   min-height: 100svh;
@@ -25,7 +24,6 @@
   gap: 40px;
 }
 
-/* ── Loading / Erro ── */
 .loadingContainer,
 .erroContainer {
   display: flex;
@@ -51,7 +49,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* ── HERO ── */
 .heroLivro {
   display: flex;
   gap: 48px;
@@ -120,7 +117,6 @@
   max-width: 520px;
 }
 
-/* ── Cards Resumo + Análise ── */
 .cardsLivro {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -162,7 +158,6 @@
   line-height: 1.75;
 }
 
-/* ── Personagens ── */
 .personagens {
   display: flex;
   flex-direction: column;
@@ -194,7 +189,6 @@
   gap: 20px;
 }
 
-/* ── Contexto ── */
 .contextoLivro {
   display: flex;
   gap: 40px;
@@ -234,7 +228,6 @@
   line-height: 1.75;
 }
 
-/* ── Responsivo ── */
 @media (max-width: 1024px) {
   .conteudoLivro__inner {
     width: min(100%, calc(100% - 32px));

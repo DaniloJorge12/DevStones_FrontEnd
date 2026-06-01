@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
-import { BookOpen, Star, ArrowRight, X, ChevronRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { BookOpen, Star, ArrowRight, X, ChevronRight, Sparkles, Loader2 } from 'lucide-react';
 import MenuLateral from '../../components/Drawer/MenuLateral.jsx';
 import Cabecalho from '../../components/Layout/Cabecalho.jsx';
 import Rodape from '../../components/Layout/Rodape.jsx';
 import { useIdioma } from '../../contexts/IdiomaContext.jsx';
-import { buscarSimulados, buscarLivros } from '../../services/simuladoService.js';
+import { buscarSimulados, buscarLivros, gerarQuestoesIA } from '../../services/simuladoService.js';
 import './Simulados.css';
+
+const VIDEOS_LOADING = [
+    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/ivonte.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9pdm9udGUubXA0IiwiaWF0IjoxNzc5ODI5OTQyLCJleHAiOjE4MTEzNjU5NDJ9.Aqloco9f7ipoa2-xe8m_Gh4hEWp6I8fVp1bJ0tSCNIo',
+    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/daniela.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9kYW5pZWxhLm1wNCIsImlhdCI6MTc3OTgyOTkyOCwiZXhwIjoxODExMzY1OTI4fQ.lsiVSGTmh4IF3S-fv3HFsiPvFNINnSmEa-t0T6ec3TM'
+];
 
 const textos = {
     pt: {
@@ -32,6 +37,15 @@ const textos = {
         resultadoDesc: (acertos, total) => `Você acertou ${acertos} de ${total} questões.`,
         tentar: 'Tentar novamente',
         explicacao: 'Explicação',
+        iaTitulo: 'Gerar Quiz com IA',
+        iaDesc: 'Digite qualquer tema literário ou de vestibular e a IA cria um quiz exclusivo para você na hora.',
+        iaBadge: 'POWERED BY AI',
+        iaPlaceholder: 'Ex: Dom Casmurro, Romantismo, Realismo Brasileiro...',
+        iaQtd: 'Quantas questões?',
+        iaGerar: 'Gerar Quiz',
+        iaGerandoTitulo: 'A IA está criando seu quiz...',
+        iaGerandoDesc: 'Isso pode levar até 30 segundos. Aguenta aí!',
+        iaErro: 'Não foi possível gerar o quiz. Tente novamente.',
     },
     en: {
         titulo: 'Test your knowledge',
@@ -57,6 +71,15 @@ const textos = {
         resultadoDesc: (acertos, total) => `You got ${acertos} out of ${total} questions right.`,
         tentar: 'Try again',
         explicacao: 'Explanation',
+        iaTitulo: 'Generate Quiz with AI',
+        iaDesc: 'Type any literary or exam topic and the AI creates an exclusive quiz for you on the spot.',
+        iaBadge: 'POWERED BY AI',
+        iaPlaceholder: 'Ex: Dom Casmurro, Romanticism, Brazilian Realism...',
+        iaQtd: 'How many questions?',
+        iaGerar: 'Generate Quiz',
+        iaGerandoTitulo: 'AI is creating your quiz...',
+        iaGerandoDesc: 'This can take up to 30 seconds. Hang tight!',
+        iaErro: 'Could not generate quiz. Please try again.',
     },
 };
 
@@ -67,10 +90,10 @@ function embaralhar(arr) {
 function montarQuestoes(simulados, idLivro, idioma) {
     const filtradas = simulados.filter((s) => s.idLivro === idLivro);
     return embaralhar(filtradas).map((s) => {
-        const pergunta = idioma === 'en' ? (s.pergunta_en || s.pergunta) : s.pergunta;
-        const correta = idioma === 'en' ? (s.respostaCorreta_en || s.respostaCorreta) : s.respostaCorreta;
-        const erradas = idioma === 'en' ? (s.respostasErradas_en || s.respostasErradas) : s.respostasErradas;
-        const explicacao = idioma === 'en' ? (s.explicacao_en || s.explicacao) : s.explicacao;
+        const pergunta  = idioma === 'en' ? (s.pergunta_en  || s.pergunta)  : s.pergunta;
+        const correta   = idioma === 'en' ? (s.respostaCorreta_en || s.respostaCorreta) : s.respostaCorreta;
+        const erradas   = idioma === 'en' ? (s.respostasErradas_en || s.respostasErradas) : s.respostasErradas;
+        const explicacao= idioma === 'en' ? (s.explicacao_en || s.explicacao) : s.explicacao;
         return {
             id: s.id,
             pergunta,
@@ -81,14 +104,173 @@ function montarQuestoes(simulados, idLivro, idioma) {
     });
 }
 
+function montarQuestoesIA(questoes, idioma) {
+    return questoes.map((q) => {
+        const pergunta  = idioma === 'en' ? (q.pergunta_en  || q.pergunta)  : q.pergunta;
+        const correta   = idioma === 'en' ? (q.respostaCorreta_en || q.respostaCorreta) : q.respostaCorreta;
+        const erradas   = idioma === 'en' ? (q.respostasErradas_en || q.respostasErradas) : q.respostasErradas;
+        const explicacao= idioma === 'en' ? (q.explicacao_en || q.explicacao) : q.explicacao;
+        return {
+            id: Math.random(),
+            pergunta,
+            correta,
+            opcoes: embaralhar([correta, ...erradas]),
+            explicacao,
+        };
+    });
+}
+
+function VideoLoading({ t }) {
+    const [indice, setIndice] = useState(() =>
+        Math.floor(Math.random() * VIDEOS_LOADING.length)
+    );
+
+    function sortearProximo() {
+        setIndice((atual) => {
+            if (VIDEOS_LOADING.length <= 1) return atual;
+            let novo;
+            do {
+                novo = Math.floor(Math.random() * VIDEOS_LOADING.length);
+            } while (novo === atual);
+            return novo;
+        });
+    }
+
+    return (
+        <div className="overlayGerandoIA">
+            <div className="modalGerandoIA">
+                <div className="gerandoIAVideo">
+                    <video
+                        key={indice}
+                        src={VIDEOS_LOADING[indice]}
+                        autoPlay
+                        muted
+                        playsInline
+                        onEnded={sortearProximo}
+                    />
+                </div>
+                <div className="gerandoIATexto">
+                    <div className="gerandoIASpinner">
+                        <Loader2 size={18} className="iconeSpin" />
+                    </div>
+                    <h3>{t.iaGerandoTitulo}</h3>
+                    <p>{t.iaGerandoDesc}</p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
+    const [tema, setTema]       = useState('');
+    const [qtd, setQtd]         = useState(5);
+    const [gerando, setGerando] = useState(false);
+    const [erro, setErro]       = useState('');
+
+    async function handleGerar() {
+        const temaLimpo = tema.trim();
+        if (!temaLimpo) return;
+        setErro('');
+        setGerando(true);
+        try {
+            const resultado = await gerarQuestoesIA(temaLimpo, qtd);
+            const questoes  = montarQuestoesIA(resultado.objetoGerado.questoes, idioma);
+            onQuestoesGeradas(
+                { titulo: temaLimpo, autor: 'Gerado por IA' },
+                questoes
+            );
+        } catch (e) {
+            setErro(t.iaErro);
+        } finally {
+            setGerando(false);
+        }
+    }
+
+    function handleKeyDown(e) {
+        if (e.key === 'Enter') handleGerar();
+    }
+
+    return (
+        <>
+            {gerando && <VideoLoading t={t} />}
+
+            <div className="secaoGerarIA">
+
+                {/* grade decorativa de fundo */}
+                <div className="gerarIAGrade" aria-hidden="true" />
+
+                {/* círculo decorativo direita */}
+                <div className="gerarIACirculo" aria-hidden="true" />
+
+                <div className="gerarIAConteudo">
+
+                    <div className="gerarIACabecalho">
+                        <span className="gerarIABadge">
+                            <Sparkles size={11} />
+                            {t.iaBadge}
+                        </span>
+                        <h2>{t.iaTitulo}</h2>
+                        <p>{t.iaDesc}</p>
+                    </div>
+
+                    <div className="gerarIAControles">
+                        {/* input + botão na mesma linha */}
+                        <div className="gerarIALinha">
+                            <input
+                                type="text"
+                                className="gerarIAInput"
+                                placeholder={t.iaPlaceholder}
+                                value={tema}
+                                onChange={(e) => setTema(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                disabled={gerando}
+                            />
+                            <button
+                                className="gerarIABotao"
+                                onClick={handleGerar}
+                                disabled={gerando || !tema.trim()}
+                            >
+                                {gerando ? (
+                                    <Loader2 size={15} className="iconeSpin" />
+                                ) : (
+                                    <Sparkles size={15} />
+                                )}
+                                {t.iaGerar}
+                            </button>
+                        </div>
+
+                        {/* select de quantidade embaixo, discreto */}
+                        <div className="gerarIASelectWrap">
+                            <label className="gerarIALabel">{t.iaQtd}</label>
+                            <select
+                                className="gerarIASelect"
+                                value={qtd}
+                                onChange={(e) => setQtd(Number(e.target.value))}
+                                disabled={gerando}
+                            >
+                                {[3, 5, 7, 10].map((n) => (
+                                    <option key={n} value={n}>{n}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    {erro && <p className="gerarIAErro">{erro}</p>}
+                </div>
+
+            </div>
+        </>
+    );
+}
+
 function ModalQuiz({ livro, questoes, aoFechar, t }) {
-    const [indice, setIndice] = useState(0);
+    const [indice,    setIndice]    = useState(0);
     const [selecionada, setSelecionada] = useState(null);
-    const [acertos, setAcertos] = useState(0);
+    const [acertos,   setAcertos]   = useState(0);
     const [finalizado, setFinalizado] = useState(false);
 
-    const questao = questoes[indice];
-    const total = questoes.length;
+    const questao  = questoes[indice];
+    const total    = questoes.length;
     const respondeu = selecionada !== null;
 
     function selecionar(opcao) {
@@ -98,10 +280,7 @@ function ModalQuiz({ livro, questoes, aoFechar, t }) {
     }
 
     function avancar() {
-        if (indice + 1 >= total) {
-            setFinalizado(true);
-            return;
-        }
+        if (indice + 1 >= total) { setFinalizado(true); return; }
         setIndice((i) => i + 1);
         setSelecionada(null);
     }
@@ -231,17 +410,16 @@ export default function Simulados({ usuario, aoSair }) {
     const { idioma } = useIdioma();
     const t = textos[idioma] ?? textos.pt;
 
-    const [livros, setLivros] = useState([]);
-    const [simulados, setSimulados] = useState([]);
-    const [carregando, setCarregando] = useState(true);
-    const [erro, setErro] = useState('');
-    const [busca, setBusca] = useState('');
-    const [livroAtivo, setLivroAtivo] = useState(null);
+    const [livros,      setLivros]      = useState([]);
+    const [simulados,   setSimulados]   = useState([]);
+    const [carregando,  setCarregando]  = useState(true);
+    const [erro,        setErro]        = useState('');
+    const [busca,       setBusca]       = useState('');
+    const [livroAtivo,  setLivroAtivo]  = useState(null);
     const [questoesAtivas, setQuestoesAtivas] = useState([]);
 
     useEffect(() => {
         let ativo = true;
-
         async function carregar() {
             try {
                 setCarregando(true);
@@ -252,7 +430,7 @@ export default function Simulados({ usuario, aoSair }) {
                 ]);
                 if (!ativo) return;
                 const listaSimulados = Array.isArray(dadosSimulados) ? dadosSimulados : dadosSimulados?.data ?? [];
-                const listaLivros = Array.isArray(dadosLivros) ? dadosLivros : dadosLivros?.data ?? [];
+                const listaLivros    = Array.isArray(dadosLivros)    ? dadosLivros    : dadosLivros?.data    ?? [];
                 setSimulados(listaSimulados);
                 setLivros(listaLivros);
             } catch (e) {
@@ -261,7 +439,6 @@ export default function Simulados({ usuario, aoSair }) {
                 if (ativo) setCarregando(false);
             }
         }
-
         carregar();
         return () => { ativo = false; };
     }, []);
@@ -271,7 +448,7 @@ export default function Simulados({ usuario, aoSair }) {
         if (!termo) return true;
         return (
             l.titulo?.toLowerCase().includes(termo) ||
-            l.autor?.toLowerCase().includes(termo) ||
+            l.autor?.toLowerCase().includes(termo)  ||
             l.genero?.toLowerCase().includes(termo)
         );
     });
@@ -279,6 +456,11 @@ export default function Simulados({ usuario, aoSair }) {
     function abrirQuiz(livro) {
         const questoes = montarQuestoes(simulados, livro.id, idioma);
         if (questoes.length === 0) return;
+        setQuestoesAtivas(questoes);
+        setLivroAtivo(livro);
+    }
+
+    function abrirQuizIA(livro, questoes) {
         setQuestoesAtivas(questoes);
         setLivroAtivo(livro);
     }
@@ -297,11 +479,14 @@ export default function Simulados({ usuario, aoSair }) {
 
                 <main className="areaSimulados">
                     <div className="interiorSimulados">
+
+                        {/* ── Cabeçalho ── */}
                         <div className="topoSimulados">
                             <h1>{t.titulo}</h1>
                             <p>{t.subtitulo}</p>
                         </div>
 
+                        {/* ── Quiz diário ── */}
                         <div className="quizDiario">
                             <div className="quizDiarioEsquerda">
                                 <div className="quizDiarioIcone">
@@ -324,6 +509,14 @@ export default function Simulados({ usuario, aoSair }) {
                             </button>
                         </div>
 
+                        {/* ── Seção de geração por IA ── */}
+                        <SecaoGerarIA
+                            t={t}
+                            idioma={idioma}
+                            onQuestoesGeradas={abrirQuizIA}
+                        />
+
+                        {/* ── Explorar por obra ── */}
                         <section className="secaoExplorar">
                             <div className="topoSecaoExplorar">
                                 <div className="tituloSecaoExplorar">

@@ -137,3 +137,65 @@
     gap: 10px;
   }
 }
+.perfilCabecalho {
+  position: relative;
+}
+
+.avatarPerfil {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.avatarPerfil:hover {
+  transform: scale(1.05);
+}
+
+.menuPerfil {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(18px);
+  border: 1px solid #ece6de;
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+  animation: aparecerMenu 0.2s ease;
+}
+
+.itemMenuPerfil {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 12px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  color: #2d2833;
+  transition: background 0.2s ease;
+}
+
+.itemMenuPerfil:hover {
+  background: #f6f3ee;
+}
+
+.itemMenuPerfil.sair {
+  color: #a91f1b;
+}
+
+@keyframes aparecerMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -23,10 +23,6 @@ function CartaoVideoAula({ aula }) {
             )}
             <h3>{aula.titulo}</h3>
             <p>{aula.descricao}</p>
-            <span className="metaVideoAula">
-                <Heart size={12} />
-                {aula.curtidas} curtidas
-            </span>
         </article>
     );
 }
