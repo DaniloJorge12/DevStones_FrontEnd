@@ -938,3 +938,61 @@
   70%  { transform: scale(1.15) translateY(-6px); opacity: 1; }
   100% { transform: scale(1) translateY(0); opacity: 1; }
 }
+
+.secaoQuizzesSalvos {
+  margin-top: 36px;
+}
+
+.cartaoQuizSalvo {
+  border-color: #ede0f5;
+}
+
+.cartaoQuizSalvo:hover {
+  border-color: #d8b4fe;
+  box-shadow: 0 8px 28px rgba(139, 92, 246, 0.08);
+}
+
+.cartaoQuizSalvoIcone {
+  background: #f5f0ff;
+  color: #7c3aed;
+}
+
+.badgeIA {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #f5f0ff;
+  color: #7c3aed;
+  border-radius: 6px;
+  padding: 2px 7px;
+  width: fit-content;
+}
+
+.botoesCartaoSalvo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.botaoRemoverSalvo {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ede5db;
+  border-radius: 50%;
+  background: transparent;
+  color: #b0a8ba;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex: 0 0 auto;
+}
+
+.botaoRemoverSalvo:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
