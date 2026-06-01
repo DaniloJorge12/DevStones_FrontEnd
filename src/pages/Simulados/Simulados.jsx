@@ -8,8 +8,9 @@ import { buscarSimulados, buscarLivros, gerarQuestoesIA } from '../../services/s
 import './Simulados.css';
 
 const VIDEOS_LOADING = [
-    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/ivonte.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9pdm9udGUubXA0IiwiaWF0IjoxNzc5ODI5OTQyLCJleHAiOjE4MTEzNjU5NDJ9.Aqloco9f7ipoa2-xe8m_Gh4hEWp6I8fVp1bJ0tSCNIo',
-    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/daniela.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9kYW5pZWxhLm1wNCIsImlhdCI6MTc3OTgyOTkyOCwiZXhwIjoxODExMzY1OTI4fQ.lsiVSGTmh4IF3S-fv3HFsiPvFNINnSmEa-t0T6ec3TM'
+    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/mamprim.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9tYW1wcmltLm1wNCIsImlhdCI6MTc4MDM1MzczOCwiZXhwIjoxODExODg5NzM4fQ.clCOYUjWKlicfAmYu4S_5cW_0VNOmIu9SIDxRZNVbOo',
+    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/ivonete2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9pdm9uZXRlMi5tcDQiLCJpYXQiOjE3ODAzNTQ2NTgsImV4cCI6MTgxMTg5MDY1OH0.bsFwYXyD8LwMRuTJSO6f2evKtOdi8WX_EvcXrTacvvU',
+    'https://xjdxuxqhnhqilczirhlj.supabase.co/storage/v1/object/sign/arquivos/daniela2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8yZmM4YzEwNC1iMjE3LTQ4ZDMtOWMyMi0zMzE4MTdjYzhkMjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJhcnF1aXZvcy9kYW5pZWxhMi5tcDQiLCJpYXQiOjE3ODAzNTQ3MTIsImV4cCI6MTgxMTg5MDcxMn0.AFnaETFOqj7GKZWb19EYCqKZGhutTaoPx5Q-kWdPuuM'
 ];
 
 const textos = {
@@ -46,6 +47,7 @@ const textos = {
         iaGerandoTitulo: 'A IA está criando seu quiz...',
         iaGerandoDesc: 'Isso pode levar até 30 segundos. Aguenta aí!',
         iaErro: 'Não foi possível gerar o quiz. Tente novamente.',
+        quizPronto: 'SEU QUIZ ESTÁ PRONTO',
     },
     en: {
         titulo: 'Test your knowledge',
@@ -80,6 +82,7 @@ const textos = {
         iaGerandoTitulo: 'AI is creating your quiz...',
         iaGerandoDesc: 'This can take up to 30 seconds. Hang tight!',
         iaErro: 'Could not generate quiz. Please try again.',
+        quizPronto: 'YOUR QUIZ IS READY',
     },
 };
 
@@ -120,7 +123,7 @@ function montarQuestoesIA(questoes, idioma) {
     });
 }
 
-function VideoLoading({ t }) {
+function TelaGerandoIA({ t }) {
     const [indice, setIndice] = useState(() =>
         Math.floor(Math.random() * VIDEOS_LOADING.length)
     );
@@ -137,31 +140,36 @@ function VideoLoading({ t }) {
     }
 
     return (
-        <div className="overlayGerandoIA">
-            <div className="modalGerandoIA">
-                <div className="gerandoIAVideo">
-                    <video
-                        key={indice}
-                        src={VIDEOS_LOADING[indice]}
-                        autoPlay
-                        muted
-                        playsInline
-                        onEnded={sortearProximo}
-                    />
-                </div>
-                <div className="gerandoIATexto">
-                    <div className="gerandoIASpinner">
-                        <Loader2 size={18} className="iconeSpin" />
-                    </div>
-                    <h3>{t.iaGerandoTitulo}</h3>
-                    <p>{t.iaGerandoDesc}</p>
-                </div>
+        <div className="telaGerandoIA">
+            <div className="telaGerandoIAVideo">
+                <video
+                    key={indice}
+                    src={VIDEOS_LOADING[indice]}
+                    autoPlay
+                    muted
+                    playsInline
+                    onEnded={sortearProximo}
+                />
+            </div>
+            <div className="telaGerandoIATexto">
+                <Loader2 size={22} className="iconeSpin" />
+                <h3>{t.iaGerandoTitulo}</h3>
+                <p>{t.iaGerandoDesc}</p>
             </div>
         </div>
     );
 }
 
-function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
+function TelaQuizPronto({ t }) {
+    return (
+        <div className="telaQuizPronto">
+            <span className="telaQuizProntoEmoji">🎉</span>
+            <h2>{t.quizPronto}</h2>
+        </div>
+    );
+}
+
+function SecaoGerarIA({ t, idioma, onGerandoMudou, onQuestoesGeradas }) {
     const [tema, setTema]       = useState('');
     const [qtd, setQtd]         = useState(5);
     const [gerando, setGerando] = useState(false);
@@ -172,6 +180,7 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
         if (!temaLimpo) return;
         setErro('');
         setGerando(true);
+        onGerandoMudou(true);
         try {
             const resultado = await gerarQuestoesIA(temaLimpo, qtd);
             const listaQuestoes = resultado?.objetoGerado?.questoes;
@@ -185,8 +194,8 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
             );
         } catch (e) {
             setErro(e.message || t.iaErro);
-        } finally {
             setGerando(false);
+            onGerandoMudou(false);
         }
     }
 
@@ -195,71 +204,63 @@ function SecaoGerarIA({ t, idioma, onQuestoesGeradas }) {
     }
 
     return (
-        <>
-            {gerando && <VideoLoading t={t} />}
+        <div className="secaoGerarIA">
+            <div className="gerarIAGrade" aria-hidden="true" />
+            <div className="gerarIACirculo" aria-hidden="true" />
 
-            <div className="secaoGerarIA">
-
-                <div className="gerarIAGrade" aria-hidden="true" />
-
-                <div className="gerarIACirculo" aria-hidden="true" />
-
-                <div className="gerarIAConteudo">
-
-                    <div className="gerarIACabecalho">
-                        <span className="gerarIABadge">
-                            <Sparkles size={11} />
-                            {t.iaBadge}
-                        </span>
-                        <h2>{t.iaTitulo}</h2>
-                        <p>{t.iaDesc}</p>
-                    </div>
-
-                    <div className="gerarIAControles">
-                        <div className="gerarIALinha">
-                            <input
-                                type="text"
-                                className="gerarIAInput"
-                                placeholder={t.iaPlaceholder}
-                                value={tema}
-                                onChange={(e) => setTema(e.target.value)}
-                                onKeyDown={handleKeyDown}
-                                disabled={gerando}
-                            />
-                            <button
-                                className="gerarIABotao"
-                                onClick={handleGerar}
-                                disabled={gerando || !tema.trim()}
-                            >
-                                {gerando ? (
-                                    <Loader2 size={15} className="iconeSpin" />
-                                ) : (
-                                    <Sparkles size={15} />
-                                )}
-                                {t.iaGerar}
-                            </button>
-                        </div>
-
-                        <div className="gerarIASelectWrap">
-                            <label className="gerarIALabel">{t.iaQtd}</label>
-                            <select
-                                className="gerarIASelect"
-                                value={qtd}
-                                onChange={(e) => setQtd(Number(e.target.value))}
-                                disabled={gerando}
-                            >
-                                {[3, 5, 7, 10].map((n) => (
-                                    <option key={n} value={n}>{n}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
-
-                    {erro && <p className="gerarIAErro">{erro}</p>}
+            <div className="gerarIAConteudo">
+                <div className="gerarIACabecalho">
+                    <span className="gerarIABadge">
+                        <Sparkles size={11} />
+                        {t.iaBadge}
+                    </span>
+                    <h2>{t.iaTitulo}</h2>
+                    <p>{t.iaDesc}</p>
                 </div>
 
+                <div className="gerarIAControles">
+                    <div className="gerarIALinha">
+                        <input
+                            type="text"
+                            className="gerarIAInput"
+                            placeholder={t.iaPlaceholder}
+                            value={tema}
+                            onChange={(e) => setTema(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            disabled={gerando}
+                        />
+                        <button
+                            className="gerarIABotao"
+                            onClick={handleGerar}
+                            disabled={gerando || !tema.trim()}
+                        >
+                            {gerando ? (
+                                <Loader2 size={15} className="iconeSpin" />
+                            ) : (
+                                <Sparkles size={15} />
+                            )}
+                            {t.iaGerar}
+                        </button>
+                    </div>
+
+                    <div className="gerarIASelectWrap">
+                        <label className="gerarIALabel">{t.iaQtd}</label>
+                        <select
+                            className="gerarIASelect"
+                            value={qtd}
+                            onChange={(e) => setQtd(Number(e.target.value))}
+                            disabled={gerando}
+                        >
+                            {[3, 5, 7, 10].map((n) => (
+                                <option key={n} value={n}>{n}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                {erro && <p className="gerarIAErro">{erro}</p>}
             </div>
-        </>
+        </div>
     );
 }
 
@@ -418,6 +419,11 @@ export default function Simulados({ usuario, aoSair }) {
     const [livroAtivo,  setLivroAtivo]  = useState(null);
     const [questoesAtivas, setQuestoesAtivas] = useState([]);
 
+    const [gerandoIA,   setGerandoIA]   = useState(false);
+    const [prontoIA,    setProntoIA]    = useState(false);
+    const [livroIAPendente,    setLivroIAPendente]    = useState(null);
+    const [questoesIAPendentes, setQuestoesIAPendentes] = useState([]);
+
     useEffect(() => {
         let ativo = true;
         async function carregar() {
@@ -460,15 +466,26 @@ export default function Simulados({ usuario, aoSair }) {
         setLivroAtivo(livro);
     }
 
-    function abrirQuizIA(livro, questoes) {
-        setQuestoesAtivas(questoes);
-        setLivroAtivo(livro);
+    function aoQuestoesIAGeradas(livro, questoes) {
+        setLivroIAPendente(livro);
+        setQuestoesIAPendentes(questoes);
+        setGerandoIA(false);
+        setProntoIA(true);
+        setTimeout(() => {
+            setProntoIA(false);
+            setQuestoesAtivas(questoes);
+            setLivroAtivo(livro);
+            setLivroIAPendente(null);
+            setQuestoesIAPendentes([]);
+        }, 3000);
     }
 
     function fecharQuiz() {
         setLivroAtivo(null);
         setQuestoesAtivas([]);
     }
+
+    const mostrando = gerandoIA || prontoIA;
 
     return (
         <div className="paginaSimulados">
@@ -478,84 +495,91 @@ export default function Simulados({ usuario, aoSair }) {
                 <Cabecalho usuario={usuario} aoSair={aoSair} />
 
                 <main className="areaSimulados">
-                    <div className="interiorSimulados">
-
-                        <div className="topoSimulados">
-                            <h1>{t.titulo}</h1>
-                            <p>{t.subtitulo}</p>
+                    {mostrando ? (
+                        <div className="areaGerandoIA">
+                            {gerandoIA && <TelaGerandoIA t={t} />}
+                            {prontoIA  && <TelaQuizPronto t={t} />}
                         </div>
-
-                        <div className="quizDiario">
-                            <div className="quizDiarioEsquerda">
-                                <div className="quizDiarioIcone">
-                                    <Star size={22} />
-                                </div>
-                                <div className="quizDiarioTexto">
-                                    <span className="quizDiarioBadge">{t.desafioDia}</span>
-                                    <h2>{t.quizDiarioTitulo}</h2>
-                                    <p>{t.quizDiarioDesc}</p>
-                                </div>
+                    ) : (
+                        <div className="interiorSimulados">
+                            <div className="topoSimulados">
+                                <h1>{t.titulo}</h1>
+                                <p>{t.subtitulo}</p>
                             </div>
-                            <button
-                                className="botaoComecaQuiz"
-                                onClick={() => {
-                                    if (simulados.length > 0 && livros.length > 0) abrirQuiz(livros[0]);
-                                }}
-                            >
-                                <ArrowRight size={15} />
-                                {t.comecar}
-                            </button>
-                        </div>
 
-                        <SecaoGerarIA
-                            t={t}
-                            idioma={idioma}
-                            onQuestoesGeradas={abrirQuizIA}
-                        />
-
-                        <section className="secaoExplorar">
-                            <div className="topoSecaoExplorar">
-                                <div className="tituloSecaoExplorar">
-                                    <div className="decorTitulo">
-                                        <span className="linhaDecor" />
-                                        <h2>{t.explorar}</h2>
+                            <div className="quizDiario">
+                                <div className="quizDiarioEsquerda">
+                                    <div className="quizDiarioIcone">
+                                        <Star size={22} />
                                     </div>
-                                    <p>{t.explorarDesc}</p>
+                                    <div className="quizDiarioTexto">
+                                        <span className="quizDiarioBadge">{t.desafioDia}</span>
+                                        <h2>{t.quizDiarioTitulo}</h2>
+                                        <p>{t.quizDiarioDesc}</p>
+                                    </div>
                                 </div>
-                                <div className="campoBuscaSimulados">
-                                    <input
-                                        type="text"
-                                        placeholder={t.buscarPlaceholder}
-                                        value={busca}
-                                        onChange={(e) => setBusca(e.target.value)}
-                                    />
-                                </div>
+                                <button
+                                    className="botaoComecaQuiz"
+                                    onClick={() => {
+                                        if (simulados.length > 0 && livros.length > 0) abrirQuiz(livros[0]);
+                                    }}
+                                >
+                                    <ArrowRight size={15} />
+                                    {t.comecar}
+                                </button>
                             </div>
 
-                            {carregando ? (
-                                <div className="estadoSimulados">{t.carregando}</div>
-                            ) : erro ? (
-                                <div className="estadoSimulados">{erro}</div>
-                            ) : livrosFiltrados.length === 0 ? (
-                                <div className="estadoSimulados">{t.semLivros}</div>
-                            ) : (
-                                <div className="gradeLivrosSimulados">
-                                    {livrosFiltrados.map((livro) => {
-                                        const qtd = simulados.filter((s) => s.idLivro === livro.id).length;
-                                        return (
-                                            <CartaoLivro
-                                                key={livro.id}
-                                                livro={livro}
-                                                quantidadeQuizzes={qtd}
-                                                aoClicar={() => abrirQuiz(livro)}
-                                                t={t}
-                                            />
-                                        );
-                                    })}
+                            <SecaoGerarIA
+                                t={t}
+                                idioma={idioma}
+                                onGerandoMudou={setGerandoIA}
+                                onQuestoesGeradas={aoQuestoesIAGeradas}
+                            />
+
+                            <section className="secaoExplorar">
+                                <div className="topoSecaoExplorar">
+                                    <div className="tituloSecaoExplorar">
+                                        <div className="decorTitulo">
+                                            <span className="linhaDecor" />
+                                            <h2>{t.explorar}</h2>
+                                        </div>
+                                        <p>{t.explorarDesc}</p>
+                                    </div>
+                                    <div className="campoBuscaSimulados">
+                                        <input
+                                            type="text"
+                                            placeholder={t.buscarPlaceholder}
+                                            value={busca}
+                                            onChange={(e) => setBusca(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                            )}
-                        </section>
-                    </div>
+
+                                {carregando ? (
+                                    <div className="estadoSimulados">{t.carregando}</div>
+                                ) : erro ? (
+                                    <div className="estadoSimulados">{erro}</div>
+                                ) : livrosFiltrados.length === 0 ? (
+                                    <div className="estadoSimulados">{t.semLivros}</div>
+                                ) : (
+                                    <div className="gradeLivrosSimulados">
+                                        {livrosFiltrados.map((livro) => {
+                                            const qtd = simulados.filter((s) => s.idLivro === livro.id).length;
+                                            return (
+                                                <CartaoLivro
+                                                    key={livro.id}
+                                                    livro={livro}
+                                                    quantidadeQuizzes={qtd}
+                                                    aoClicar={() => abrirQuiz(livro)}
+                                                    t={t}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </section>
+                        </div>
+                    )}
                 </main>
 
                 <Rodape />
