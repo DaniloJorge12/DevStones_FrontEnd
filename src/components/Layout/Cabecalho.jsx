@@ -66,7 +66,7 @@ export default function Cabecalho({ usuario, aoSair }) {
         <header className="cabecalho">
             <div className="marca">
                 <img
-                    src="https://ejriuxfncwbsvebswmtg.supabase.co/storage/v1/object/public/arquivos/icon.png"
+                    src="https://github.com/DaniloJorge12/DevStones_FrontEnd/blob/main/src/assets/img/icon.png?raw=true"
                     alt="D"
                     className="icon"
                 />
