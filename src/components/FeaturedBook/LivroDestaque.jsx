@@ -32,7 +32,7 @@ export default function LivroDestaque() {
         <section className="livroDestaque">
             <div className="capaLivro">
                 <img
-                    src="https://ejriuxfncwbsvebswmtg.supabase.co/storage/v1/object/public/arquivos/book.png"
+                    src="https://m.media-amazon.com/images/I/718Cw8G6OmL.jpg"
                     alt="Capa do livro Caminho das Pedras"
                 />
             </div>
