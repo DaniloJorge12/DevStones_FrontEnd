@@ -32,7 +32,7 @@ export default function HeroSection() {
 
           <div className="heroImagem">
               <img
-                  src="https://ejriuxfncwbsvebswmtg.supabase.co/storage/v1/object/public/arquivos/grupo.png"
+                  src="https://github.com/DaniloJorge12/DevStones_FrontEnd/blob/main/src/assets/img/grupo.png?raw=true"
                   alt={
                       idioma === 'pt'
                           ? 'Estudantes em ambiente de estudo'
