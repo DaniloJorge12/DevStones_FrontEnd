@@ -1,4 +1,4 @@
-const API = 'https://devstones-backend.onrender.com';
+const API = '';
 
 function obterExtensaoMaterial(material = '') {
     const caminho = material.split('?')[0].toLowerCase();

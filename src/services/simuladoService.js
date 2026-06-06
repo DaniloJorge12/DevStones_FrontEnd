@@ -1,4 +1,4 @@
-const API = 'https://devstones-backend.onrender.com';
+const API = '';
 
 export async function buscarSimulados() {
     const resposta = await fetch(`${API}/api/simulados`, {

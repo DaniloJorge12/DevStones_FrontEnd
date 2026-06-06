@@ -1,4 +1,4 @@
-const API = 'https://devstones-backend.onrender.com';
+const API = '';
 const API_KEY = 'livr0';
 
 function obterMensagemErro(dados, fallback) {

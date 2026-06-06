@@ -7,7 +7,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'https://clubelivro-backend-zui4.onrender.com',
+                target: 'https://devstones-backend.onrender.com',
                 changeOrigin: true,
                 secure: true,
             },
