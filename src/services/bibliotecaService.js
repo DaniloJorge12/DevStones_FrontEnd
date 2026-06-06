@@ -1,4 +1,4 @@
-const API = '';
+const API = 'https://devstones-backend.onrender.com';
 const API_KEY = 'livr0';
 
 function normalizarLivro(livro) {
