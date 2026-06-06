@@ -1,0 +1,271 @@
+.paginaConta {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--cor-fundo);
+}
+
+.conteudoConta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.areaConta {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.topoConta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.iconeContaCabecalho {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topoConta h1 {
+    font-size: 2rem;
+    color: var(--cor-texto);
+    margin: 0 0 0.5rem 0;
+}
+
+.topoConta p {
+    color: var(--cor-texto-secundario);
+    margin: 0;
+}
+
+.avisoBreve {
+    background-color: rgba(var(--cor-primaria-rgb), 0.1);
+    color: var(--cor-primaria);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(var(--cor-primaria-rgb), 0.2);
+}
+
+.cartoesConta {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.cartaoPerfil {
+    background-color: var(--cor-fundo-secundario);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: fit-content;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.avatarGrande {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--cor-borda);
+    color: var(--cor-texto-secundario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.imagemAvatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.botaoAlterarFoto {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: 2px solid var(--cor-fundo-secundario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.botaoAlterarFoto:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: scale(1.1);
+}
+
+.cartaoPerfil h2 {
+    font-size: 1.5rem;
+    color: var(--cor-texto);
+    margin: 0 0 0.2rem 0;
+}
+
+.cartaoPerfil span {
+    color: var(--cor-primaria);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.bioExibicao {
+    color: var(--cor-texto-secundario);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.botaoEditarConta {
+    background: transparent;
+    border: 1px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.botaoEditarConta:hover {
+    background: var(--cor-primaria);
+    color: white;
+}
+
+.cartaoDados {
+    background-color: var(--cor-fundo-secundario);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.cartaoDados h3 {
+    font-size: 1.25rem;
+    color: var(--cor-texto);
+    margin: 0 0 1.5rem 0;
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 1rem;
+}
+
+.formularioConta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grupoCampoConta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.grupoCampoConta label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-texto-secundario);
+}
+
+.grupoCampoConta input,
+.grupoCampoConta textarea {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--cor-texto);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.grupoCampoConta input:focus,
+.grupoCampoConta textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+}
+
+.grupoCampoConta input:disabled,
+.grupoCampoConta textarea:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: rgba(var(--cor-borda-rgb), 0.05);
+}
+
+.acoesConta {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.botaoCancelarConta {
+    background: transparent;
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto-secundario);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.botaoCancelarConta:hover {
+    background-color: var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.botaoSalvarConta {
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.botaoSalvarConta:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+@media (max-width: 768px) {
+    .cartoesConta {
+        grid-template-columns: 1fr;
+    }
+    
+    .areaConta {
+        padding: 1rem;
+    }
+}

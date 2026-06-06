@@ -33,7 +33,6 @@ export async function buscarLivros() {
 }
 
 export async function gerarQuestoesIA(tema, quantidade = 5) {
-    // Timeout de 90s porque o Render free tier pode demorar pra acordar
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 90_000);
 

@@ -3,14 +3,16 @@ const API_KEY = 'livr0';
 
 function normalizarLivro(livro) {
   return {
-      id: livro.id,
-
+    id: livro.id,
     titulo: livro.titulo,
     autor: livro.autor,
     categoria: livro.genero || 'Literatura',
+    categoriaEn: livro.genero_en || livro.genero || 'Literature',
     destaque: livro.anoPublicacao ? String(livro.anoPublicacao) : livro.genero || 'Livro',
+    destaqueEn: livro.anoPublicacao ? String(livro.anoPublicacao) : livro.genero_en || 'Book',
     imagem: livro.capa,
     resumo: livro.resumo,
+    resumoEn: livro.resumo_en || livro.resumo,
     anoPublicacao: livro.anoPublicacao,
     original: livro,
   };

@@ -71,7 +71,7 @@ export default function VideoAulas({ usuario, aoSair }) {
 
     return (
         <div className="paginaVideoAulas">
-            <MenuLateral itemAtivo="Videoaulas" aoSair={aoSair} />
+            <MenuLateral itemAtivo={t.titulo} aoSair={aoSair} />
 
             <div className="conteudoVideoAulas">
                 <Cabecalho usuario={usuario} aoSair={aoSair} />

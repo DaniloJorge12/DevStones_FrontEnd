@@ -8,6 +8,7 @@ import LivroPrincipal from './pages/LivroPrincipal/LivroPrincipal.jsx';
 import Simulados from './pages/Simulados/Simulados.jsx';
 import VideoAulas from './pages/VideoAulas/VideoAulas.jsx';
 import Comunidade from './pages/Comunidade/Comunidade.jsx';
+import Conta from './pages/Conta/Conta.jsx';
 import {
     limparUsuarioAutenticado,
     obterUsuarioAutenticado,
@@ -24,6 +25,7 @@ function obterPaginaAtual() {
     if (pathname.startsWith('/simulados')) return 'simulados';
     if (pathname.startsWith('/videoaulas')) return 'videoaulas';
     if (pathname.startsWith('/comunidade')) return 'comunidade';
+    if (pathname.startsWith('/conta')) return 'conta';
     return 'notfound';
 }
 
@@ -61,6 +63,7 @@ export default function App() {
     if (paginaEfetiva === 'simulados')  return <Simulados usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'videoaulas') return <VideoAulas usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'comunidade') return <Comunidade usuario={usuario} aoSair={sair} />;
+    if (paginaEfetiva === 'conta')      return <Conta usuario={usuario} aoSair={sair} />;
     if (paginaEfetiva === 'notfound')   return <NotFound />;
     if (paginaEfetiva === 'livro')      return <LivroPrincipal usuario={usuario} aoSair={sair} />;
 

@@ -10,6 +10,7 @@ import {
     criarPublicacaoComunidade,
     deletarPublicacaoComunidade,
 } from '../../services/comunidadeService.js';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 import './Comunidade.css';
 
 const formularioInicial = {
@@ -28,12 +29,44 @@ function criarTituloAutomatico(conteudo) {
 }
 
 export default function Comunidade({ usuario, aoSair }) {
+    const { idioma } = useIdioma();
     const [publicacoes, setPublicacoes] = useState([]);
     const [formulario, setFormulario] = useState(formularioInicial);
     const [editando, setEditando] = useState(null);
     const [carregando, setCarregando] = useState(true);
     const [salvando, setSalvando] = useState(false);
     const [erro, setErro] = useState('');
+
+    const textos = {
+        pt: {
+            menuItem: 'Comunidade & Dicas',
+            forum: 'Fórum interativo',
+            titulo: 'Dicas de Vestibular',
+            subtitulo: 'Compartilhe suas estratégias, análises e debata com a equipe.',
+            erroCarregar: 'Não foi possível carregar a comunidade.',
+            erroSalvar: 'Não foi possível salvar a publicação.',
+            erroExcluir: 'Não foi possível excluir a publicação.',
+            erroCurtir: 'Não foi possível curtir a publicação.',
+            confirmarExclusao: 'Excluir a publicação',
+            carregando: 'Carregando publicações...',
+            vazio: 'Nenhuma publicação encontrada.',
+        },
+        en: {
+            menuItem: 'Community & Tips',
+            forum: 'Interactive Forum',
+            titulo: 'College Exam Tips',
+            subtitulo: 'Share your strategies, analyses and debate with the team.',
+            erroCarregar: 'Could not load community.',
+            erroSalvar: 'Could not save publication.',
+            erroExcluir: 'Could not delete publication.',
+            erroCurtir: 'Could not like publication.',
+            confirmarExclusao: 'Delete publication',
+            carregando: 'Loading publications...',
+            vazio: 'No publications found.',
+        }
+    };
+    
+    const t = textos[idioma] || textos.pt;
 
     useEffect(() => {
         let ativo = true;
@@ -43,7 +76,7 @@ export default function Comunidade({ usuario, aoSair }) {
                 if (ativo) setPublicacoes(dados);
             })
             .catch((error) => {
-                if (ativo) setErro(error.message || 'Nao foi possivel carregar a comunidade.');
+                if (ativo) setErro(error.message || t.erroCarregar);
             })
             .finally(() => {
                 if (ativo) setCarregando(false);
@@ -52,7 +85,7 @@ export default function Comunidade({ usuario, aoSair }) {
         return () => {
             ativo = false;
         };
-    }, []);
+    }, [idioma]);
 
     function mudarFormulario(evento) {
         const { name, value } = evento.target;
@@ -72,7 +105,7 @@ export default function Comunidade({ usuario, aoSair }) {
             categoria: 'Dica',
             conteudo: formulario.conteudo.trim(),
             autor: obterAutor(usuario),
-            idUsuario: usuario?.id,
+            idUsuario: usuario?.id ? Number(usuario.id) : null,
             curtidas: editando?.curtidas || 0,
         };
 
@@ -96,7 +129,7 @@ export default function Comunidade({ usuario, aoSair }) {
 
             limparFormulario();
         } catch (error) {
-            setErro(error.message || 'Nao foi possivel salvar a publicacao.');
+            setErro(error.message || t.erroSalvar);
         } finally {
             setSalvando(false);
         }
@@ -112,7 +145,7 @@ export default function Comunidade({ usuario, aoSair }) {
     }
 
     async function excluirPublicacao(publicacao) {
-        const confirmou = window.confirm(`Excluir a publicacao "${publicacao.titulo}"?`);
+        const confirmou = window.confirm(`${t.confirmarExclusao} "${publicacao.titulo}"?`);
         if (!confirmou) return;
 
         try {
@@ -121,7 +154,7 @@ export default function Comunidade({ usuario, aoSair }) {
             setPublicacoes((atuais) => atuais.filter((item) => item.id !== publicacao.id));
             if (editando?.id === publicacao.id) limparFormulario();
         } catch (error) {
-            setErro(error.message || 'Nao foi possivel excluir a publicacao.');
+            setErro(error.message || t.erroExcluir);
         }
     }
 
@@ -134,13 +167,13 @@ export default function Comunidade({ usuario, aoSair }) {
                 atuais.map((item) => (item.id === atualizada.id ? atualizada : item))
             );
         } catch (error) {
-            setErro(error.message || 'Nao foi possivel curtir a publicacao.');
+            setErro(error.message || t.erroCurtir);
         }
     }
 
     return (
         <div className="paginaComunidade">
-            <MenuLateral itemAtivo="Comunidade & Dicas" aoSair={aoSair} />
+            <MenuLateral itemAtivo={t.menuItem} aoSair={aoSair} />
 
             <div className="conteudoComunidade">
                 <Cabecalho usuario={usuario} aoSair={aoSair} />
@@ -148,9 +181,9 @@ export default function Comunidade({ usuario, aoSair }) {
                 <main className="areaComunidade">
                     <div className="interiorComunidade">
                         <div className="topoComunidade">
-                            <span>Forum interativo</span>
-                            <h1>Dicas de Vestibular</h1>
-                            <p>Compartilhe suas estrategias, analises e debata com a equipe.</p>
+                            <span>{t.forum}</span>
+                            <h1>{t.titulo}</h1>
+                            <p>{t.subtitulo}</p>
                         </div>
 
                         <FormularioPublicacao
@@ -166,16 +199,17 @@ export default function Comunidade({ usuario, aoSair }) {
                         {erro ? <div className="estadoComunidade">{erro}</div> : null}
 
                         {carregando ? (
-                            <div className="estadoComunidade">Carregando publicacoes...</div>
+                            <div className="estadoComunidade">{t.carregando}</div>
                         ) : publicacoes.length > 0 ? (
                             <ListaPublicacoes
                                 publicacoes={publicacoes}
                                 aoEditar={editarPublicacao}
                                 aoExcluir={excluirPublicacao}
                                 aoCurtir={curtirPublicacao}
+                                usuario={usuario}
                             />
                         ) : (
-                            <div className="estadoComunidade">Nenhuma publicacao encontrada.</div>
+                            <div className="estadoComunidade">{t.vazio}</div>
                         )}
                     </div>
                 </main>

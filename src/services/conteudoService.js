@@ -3,7 +3,7 @@ const API = 'https://devstones-backend.onrender.com';
 function obterExtensaoMaterial(material = '') {
     const caminho = material.split('?')[0].toLowerCase();
 
-    if (caminho.endsWith('.mp4')) return 'video';
+    if (caminho.endsWith('.mp4') || material.includes('youtube.com') || material.includes('youtu.be')) return 'video';
     if (caminho.endsWith('.pdf')) return 'pdf';
 
     return 'material';

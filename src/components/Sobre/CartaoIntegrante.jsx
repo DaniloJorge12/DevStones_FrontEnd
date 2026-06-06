@@ -1,15 +1,17 @@
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 import './CartaoIntegrante.css';
 
 export default function CartaoIntegrante({
     integrante,
 }) {
-    const imagemPadrao =
-        'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+    const { idioma } = useIdioma();
+
+    const nomeLimpo = integrante.nome ? encodeURIComponent(integrante.nome) : 'Dev';
+    const imagemPadrao = `https://ui-avatars.com/api/?name=${nomeLimpo}&background=random&color=fff&size=150`;
+
 
     const imagemValida =
-        integrante.foto?.includes(
-            'exemplo.com',
-        )
+        !integrante.foto || integrante.foto?.includes('exemplo.com')
             ? imagemPadrao
             : integrante.foto;
 
@@ -17,14 +19,10 @@ export default function CartaoIntegrante({
         <article className="cartaoIntegrante">
             <div className="capaIntegrante">
                 <img
-                    src={
-                        imagemValida ||
-                        imagemPadrao
-                    }
+                    src={imagemValida}
                     alt={integrante.nome}
                     onError={(e) => {
-                        e.target.src =
-                            imagemPadrao;
+                        e.target.src = imagemPadrao;
                     }}
                 />
             </div>
@@ -38,7 +36,7 @@ export default function CartaoIntegrante({
                     <h3>{integrante.nome}</h3>
 
                     <p className="autorIntegrante">
-                        {integrante.curso}
+                        {idioma === 'en' ? (integrante.curso_en || integrante.curso) : integrante.curso}
                     </p>
                 </div>
             </div>

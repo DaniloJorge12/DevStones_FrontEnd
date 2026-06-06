@@ -4,7 +4,6 @@ import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Cabecalho({ usuario, aoSair }) {
-    const nomeExibido = usuario?.nome || usuario?.username || 'Usuário';
     const emailExibido = usuario?.email || 'acesso@devstone';
 
     const fotoPadrao =
@@ -12,6 +11,7 @@ export default function Cabecalho({ usuario, aoSair }) {
 
     const [menuAberto, setMenuAberto] = useState(false);
     const [fotoPerfil, setFotoPerfil] = useState(fotoPadrao);
+    const [nomeExibido, setNomeExibido] = useState(usuario?.nome || usuario?.username || 'Usuário');
 
     const inputRef = useRef(null);
     const menuRef = useRef(null);
@@ -22,12 +22,20 @@ export default function Cabecalho({ usuario, aoSair }) {
     const inativo = idioma === 'pt' ? 'EN' : 'PT';
 
     useEffect(() => {
-        const fotoSalva = localStorage.getItem('fotoPerfilDevStone');
+        if (!usuario) return;
+        const fotoSalva = localStorage.getItem(`foto_perfil_${usuario.id}`);
+        const nomeSalvo = localStorage.getItem(`nome_perfil_${usuario.id}`);
 
         if (fotoSalva) {
             setFotoPerfil(fotoSalva);
         } else if (usuario?.foto) {
             setFotoPerfil(usuario.foto);
+        }
+
+        if (nomeSalvo) {
+            setNomeExibido(nomeSalvo);
+        } else {
+            setNomeExibido(usuario.nome || usuario.username || 'Usuário');
         }
     }, [usuario]);
 
@@ -48,7 +56,7 @@ export default function Cabecalho({ usuario, aoSair }) {
     const alterarImagem = (event) => {
         const arquivo = event.target.files?.[0];
 
-        if (!arquivo) return;
+        if (!arquivo || !usuario) return;
 
         const reader = new FileReader();
 
@@ -56,7 +64,7 @@ export default function Cabecalho({ usuario, aoSair }) {
             const imagemBase64 = reader.result;
 
             setFotoPerfil(imagemBase64);
-            localStorage.setItem('fotoPerfilDevStone', imagemBase64);
+            localStorage.setItem(`foto_perfil_${usuario.id}`, imagemBase64);
         };
 
         reader.readAsDataURL(arquivo);
@@ -104,16 +112,27 @@ export default function Cabecalho({ usuario, aoSair }) {
 
                         {menuAberto && (
                             <div className="menuPerfil">
-                                <button className="itemMenuPerfil">
+                                <button 
+                                    className="itemMenuPerfil"
+                                    onClick={() => {
+                                        setMenuAberto(false);
+                                        window.history.pushState({}, '', '/conta');
+                                        window.dispatchEvent(new PopStateEvent('popstate'));
+                                    }}
+                                >
                                     <User size={16} />
-                                    Conta
+                                    {idioma === 'pt' ? 'Conta' : 'Account'}
                                 </button>
 
                                 <button
                                     className="itemMenuPerfil"
-                                    onClick={() => inputRef.current?.click()}>
+                                    onClick={() => {
+                                        inputRef.current?.click();
+                                        setMenuAberto(false);
+                                    }}
+                                >
                                     <ImageIcon size={16} />
-                                    Alterar imagem
+                                    {idioma === 'pt' ? 'Alterar imagem' : 'Change image'}
                                 </button>
 
                                 {aoSair && (

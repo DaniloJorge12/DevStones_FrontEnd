@@ -9,18 +9,21 @@ const atalhos = {
       tag: 'Quiz',
       titulo: 'Quiz diário',
       descricao: 'Teste seus conhecimentos e receba um brinde.',
+      rota: '/simulados'
     },
     {
       icone: Lightbulb,
       tag: 'Últimas dicas',
       titulo: 'Últimas dicas',
       descricao: 'Fique por dentro de tudo que há de importante.',
+      rota: '/comunidade'
     },
     {
       icone: Library,
       tag: 'Biblioteca',
       titulo: 'Biblioteca',
       descricao: 'Acesse o que você mais precisa rapidamente.',
+      rota: '/biblioteca'
     },
   ],
   en: [
@@ -29,18 +32,21 @@ const atalhos = {
       tag: 'Quiz',
       titulo: 'Daily Quiz',
       descricao: 'Test your knowledge and earn a reward.',
+      rota: '/simulados'
     },
     {
       icone: Lightbulb,
       tag: 'Latest Tips',
       titulo: 'Latest Tips',
       descricao: 'Stay up to date with everything that matters.',
+      rota: '/comunidade'
     },
     {
       icone: Library,
       tag: 'Library',
       titulo: 'Library',
       descricao: 'Quickly access what you need most.',
+      rota: '/biblioteca'
     },
   ],
 };
@@ -50,8 +56,13 @@ const secao = {
   en: { label: 'Step by step',  titulo: 'Your main shortcuts',     desc: 'Everything you need just one click away',          ir: 'Go' },
 };
 
-function CartaoAtalho({ icone, tag, titulo, descricao, labelIr }) {
+function CartaoAtalho({ icone, tag, titulo, descricao, labelIr, rota }) {
   const Icone = icone;
+
+  function navegarPara() {
+    window.history.pushState({}, '', rota);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }
 
   return (
     <article className="cartaoAtalho">
@@ -64,7 +75,7 @@ function CartaoAtalho({ icone, tag, titulo, descricao, labelIr }) {
         <p>{descricao}</p>
       </div>
 
-      <button className="botaoAtalho" type="button">
+      <button className="botaoAtalho" type="button" onClick={navegarPara}>
         {labelIr}
         <ChevronRight size={14} />
       </button>
@@ -94,6 +105,7 @@ export default function AtalhosRapidos() {
             titulo={atalho.titulo}
             descricao={atalho.descricao}
             labelIr={s.ir}
+            rota={atalho.rota}
           />
         ))}
       </div>

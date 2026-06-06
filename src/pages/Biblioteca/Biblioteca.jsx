@@ -5,14 +5,8 @@ import TopoBiblioteca from '../../components/Biblioteca/TopoBiblioteca.jsx';
 import MenuLateral from '../../components/Drawer/MenuLateral.jsx';
 import Cabecalho from '../../components/Layout/Cabecalho.jsx';
 import Rodape from '../../components/Layout/Rodape.jsx';
+import { useIdioma } from '../../contexts/IdiomaContext.jsx';
 import './Biblioteca.css';
-
-const filtros = [
-    { valor: 'todos', rotulo: 'Todos' },
-    { valor: 'populares', rotulo: 'Mais populares' },
-    { valor: 'recentes', rotulo: 'Mais recentes' },
-    { valor: 'favoritos', rotulo: 'Favoritos' },
-];
 
 const fontesBiblioteca = [
     {
@@ -125,11 +119,45 @@ function filtrarLivros(livros, filtroAtivo, busca) {
 }
 
 export default function Biblioteca({ usuario, aoSair }) {
+    const { idioma } = useIdioma();
     const [livros, setLivros] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
     const [busca, setBusca] = useState('');
     const [filtroAtivo, setFiltroAtivo] = useState('todos');
+
+    const textos = {
+        pt: {
+            menuItem: 'Biblioteca',
+            carregando: 'Carregando livros...',
+            nenhum: 'Nenhum livro encontrado com esses filtros.',
+            erroGeral: 'Não foi possível carregar os livros.',
+            falhas: 'Algumas fontes não responderam: ',
+            todos: 'Todos',
+            populares: 'Mais populares',
+            recentes: 'Mais recentes',
+            favoritos: 'Favoritos'
+        },
+        en: {
+            menuItem: 'Library',
+            carregando: 'Loading books...',
+            nenhum: 'No books found with these filters.',
+            erroGeral: 'Could not load books.',
+            falhas: 'Some sources did not respond: ',
+            todos: 'All',
+            populares: 'Most popular',
+            recentes: 'Most recent',
+            favoritos: 'Favorites'
+        }
+    };
+    const t = textos[idioma] || textos.pt;
+
+    const filtros = [
+        { valor: 'todos', rotulo: t.todos },
+        { valor: 'populares', rotulo: t.populares },
+        { valor: 'recentes', rotulo: t.recentes },
+        { valor: 'favoritos', rotulo: t.favoritos },
+    ];
 
     useEffect(() => {
         let ativo = true;
@@ -172,12 +200,12 @@ export default function Biblioteca({ usuario, aoSair }) {
                 if (ativo) {
                     setLivros(dedupeLivros(livrosCarregados));
                     if (falhas.length > 0) {
-                        setErro(`Algumas fontes não responderam: ${falhas.join(', ')}`);
+                        setErro(`${t.falhas}${falhas.join(', ')}`);
                     }
                 }
             } catch (error) {
                 if (ativo) {
-                    setErro(error.message || 'Não foi possível carregar os livros.');
+                    setErro(error.message || t.erroGeral);
                 }
             } finally {
                 if (ativo) {
@@ -191,13 +219,13 @@ export default function Biblioteca({ usuario, aoSair }) {
         return () => {
             ativo = false;
         };
-    }, []);
+    }, [idioma]);
 
     const livrosVisiveis = filtrarLivros(livros, filtroAtivo, busca);
 
     return (
         <div className='paginaBiblioteca'>
-            <MenuLateral itemAtivo='Biblioteca' aoSair={aoSair} />
+            <MenuLateral itemAtivo={t.menuItem} aoSair={aoSair} />
 
             <div className='conteudoBiblioteca'>
                 <Cabecalho usuario={usuario} aoSair={aoSair} />
@@ -223,16 +251,14 @@ export default function Biblioteca({ usuario, aoSair }) {
                         />
 
                         {carregando ? (
-                            <div className='estadoBiblioteca'>Carregando livros...</div>
+                            <div className='estadoBiblioteca'>{t.carregando}</div>
                         ) : (
                             <>
                                 {erro && <div className='estadoBiblioteca'>{erro}</div>}
                                 {livrosVisiveis.length > 0 ? (
                                     <GradeLivros livros={livrosVisiveis} />
                                 ) : (
-                                    <div className='estadoBiblioteca'>
-                                        Nenhum livro encontrado com esses filtros.
-                                    </div>
+                                    <div className='estadoBiblioteca'>{t.nenhum}</div>
                                 )}
                             </>
                         )}

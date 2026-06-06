@@ -7,6 +7,7 @@ import {
     CircleCheck,
     InfoIcon,
     LogOut,
+    User,
 } from 'lucide-react';
 import './MenuLateral.css';
 import { useIdioma } from '../../contexts/IdiomaContext.jsx';
@@ -20,6 +21,7 @@ const itensMenu = {
         { icone: CircleCheck, texto: 'Simulados & Quiz', href: '/simulados' },
         { icone: PlayCircle, texto: 'Videoaulas', href: '/videoaulas' },
         { icone: InfoIcon, texto: 'Sobre nós', href: '/sobre' },
+        { icone: User, texto: 'Conta', href: '/conta' },
     ],
     en: [
         { icone: Home, texto: 'Home', href: '/' },
@@ -29,10 +31,11 @@ const itensMenu = {
         { icone: CircleCheck, texto: 'Practice & Quiz', href: '/simulados' },
         { icone: PlayCircle, texto: 'Video Lessons', href: '/videoaulas' },
         { icone: InfoIcon, texto: 'About us', href: '/sobre' },
+        { icone: User, texto: 'Account', href: '/conta' },
     ],
 };
 
-// Mapeamento PT -> EN para o itemAtivo (prop vinda de fora ainda usa PT)
+
 const itemAtivoMap = {
     Início: 'Home',
     'O Livro Principal': 'Main Book',
@@ -41,6 +44,7 @@ const itemAtivoMap = {
     'Simulados & Quiz': 'Practice & Quiz',
     Videoaulas: 'Video Lessons',
     'Sobre nós': 'About us',
+    Conta: 'Account',
 };
 
 function ItemMenu({ icone, texto, href, itemAtivoTexto, aoSair }) {
@@ -82,7 +86,7 @@ export default function MenuLateral({ itemAtivo = 'Início', aoSair }) {
     const { idioma } = useIdioma();
     const lista = itensMenu[idioma];
 
-    // Converte o itemAtivo (sempre em PT) para o texto do idioma atual
+
     const itemAtivoTraduzido = idioma === 'en' ? (itemAtivoMap[itemAtivo] ?? itemAtivo) : itemAtivo;
 
     const labelMenu = idioma === 'pt' ? 'Menu de navegação' : 'Navigation menu';
