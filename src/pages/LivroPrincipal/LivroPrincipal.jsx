@@ -111,7 +111,7 @@ export default function LivroPrincipal({ usuario, aoSair }) {
   const Layout = ({ children }) => (
     <div className="paginaLivro">
       <MenuLateral itemAtivo="O Livro Principal" aoSair={aoSair} />
-      <div className="conteudoLivro">
+      <div className="conteudoPrincipalLivro">
         <Cabecalho usuario={usuario} aoSair={aoSair} />
         <main className="areaLivro">{children}</main>
         <Rodape />
@@ -140,7 +140,7 @@ export default function LivroPrincipal({ usuario, aoSair }) {
 
   return (
     <Layout>
-      <div className="conteudoLivro__inner">
+      <div className="conteudoPrincipalLivro__inner">
 
         <section className="heroLivro">
           <div className="imagemLivro">

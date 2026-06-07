@@ -1,6 +1,7 @@
 const API = 'https://devstones-backend.onrender.com';
 
-function obterExtensaoMaterial(material = '') {
+function obterExtensaoMaterial(material) {
+    if (!material) return 'material';
     const caminho = material.split('?')[0].toLowerCase();
 
     if (caminho.endsWith('.mp4') || material.includes('youtube.com') || material.includes('youtu.be')) return 'video';

@@ -142,7 +142,7 @@ function embaralhar(arr) {
 }
 
 function montarQuestoes(simulados, idLivro, idioma) {
-    const filtradas = simulados.filter((s) => s.idLivro === idLivro);
+    const filtradas = simulados.filter((s) => String(s.idLivro) === String(idLivro));
     return embaralhar(filtradas).map((s) => {
         const pergunta  = idioma === 'en' ? (s.pergunta_en  || s.pergunta)  : s.pergunta;
         const correta   = idioma === 'en' ? (s.respostaCorreta_en || s.respostaCorreta) : s.respostaCorreta;
@@ -700,7 +700,7 @@ export default function Simulados({ usuario, aoSair }) {
                                 ) : (
                                     <div className="gradeLivrosSimulados">
                                         {livrosFiltrados.map((livro) => {
-                                            const qtd = simulados.filter((s) => s.idLivro === livro.id).length;
+                                            const qtd = simulados.filter((s) => String(s.idLivro) === String(livro.id)).length;
                                             return (
                                                 <CartaoLivro
                                                     key={livro.id}
