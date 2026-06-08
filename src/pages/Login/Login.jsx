@@ -60,6 +60,7 @@ export default function Login({ aoAutenticar }) {
             descricao_en: `${nome || 'User'} is using the platform to review literature.`,
         });
 
+        localStorage.setItem('cadastroRecente', 'true');
         aoAutenticar(usuario);
         setMensagem('Conta criada com sucesso.');
     }
