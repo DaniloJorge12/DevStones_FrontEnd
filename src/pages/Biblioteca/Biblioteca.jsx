@@ -30,10 +30,6 @@ const fontesBiblioteca = [
         apiKey: 'Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO',
     },
     {
-        nome: 'Quarto de Despejo',
-        url: 'https://backend-projeto-integrador-rana.onrender.com/api/livro',
-    },
-    {
         nome: 'Vidas Secas (Alves)',
         url: 'https://bookverse-back-pob5.onrender.com/livros',
         apiKey: 'amods',
