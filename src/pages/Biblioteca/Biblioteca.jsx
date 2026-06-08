@@ -32,7 +32,6 @@ const fontesBiblioteca = [
     {
         nome: 'Quarto de Despejo',
         url: 'https://backend-projeto-integrador-rana.onrender.com/api/livro',
-        apiKey: 'amods',
     },
     {
         nome: 'Vidas Secas (Alves)',
@@ -215,12 +214,14 @@ export default function Biblioteca({ usuario, aoSair }) {
         let ativo = true;
 
         async function buscarFonte(fonte) {
+            const headers = {};
+            if (fonte.apiKey) {
+                headers['x-api-key'] = fonte.apiKey;
+            }
+
             const resposta = await fetch(fonte.url, {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': fonte.apiKey,
-                },
+                headers,
             });
 
             if (!resposta.ok) {
