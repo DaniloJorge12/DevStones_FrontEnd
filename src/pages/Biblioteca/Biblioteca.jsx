@@ -29,6 +29,26 @@ const fontesBiblioteca = [
         url: 'https://ratsjs.onrender.com/api/livros',
         apiKey: 'Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO',
     },
+    {
+        nome: 'Quarto de Despejo',
+        url: 'https://backend-projeto-integrador-rana.onrender.com/api/livro',
+        apiKey: 'amods',
+    },
+    {
+        nome: 'Vidas Secas (Alves)',
+        url: 'https://bookverse-back-pob5.onrender.com/livros',
+        apiKey: 'amods',
+    },
+    {
+        nome: 'Bertunho',
+        url: 'https://readflow-m8o6.onrender.com/api/livros',
+        apiKey: 'projetoamods',
+    },
+    {
+        nome: "Olhos d'Água",
+        url: 'https://olhosdagua.onrender.com/api/livro',
+        apiKey: '6uztY7YTa2Dcgnf2ovDC2Kqmwvq2PdTMOlkx1bLwmhO2HQpQoXHMhk1cBcIjzHj9lztTbW7I83UZ91C8uSos-n8kOx3UuqU8n0BIDVm1venccSH0QVyNYKkLTZboaUpd',
+    },
 ];
 
 function extrairListaLivros(dados) {
@@ -39,7 +59,8 @@ function extrairListaLivros(dados) {
     return dados?.data || dados?.livros || dados?.results || dados?.books || [];
 }
 
-function normalizarLivro(livro, fonteNome) {
+function normalizarLivro(livro, fonteNome, idioma) {
+    const en = idioma === 'en';
     const id =
         livro.id ||
         livro._id ||
@@ -47,16 +68,47 @@ function normalizarLivro(livro, fonteNome) {
         livro.bookId ||
         `${fonteNome}-${livro.titulo || livro.autor || livro.categoria || Math.random().toString(36).slice(2)}`;
 
+    let imagem = livro.capa || livro.imagem || livro.capaUrl || livro.capaURl || livro.capa_url || '/src/assets/img/book.png';
+
+    let titulo = livro.titulo || livro.nome || livro.nomeLivro || 'Livro sem título';
+    let tituloEn = livro.tituloEn || livro.titulo_en || livro.tituloEN || titulo;
+    if (fonteNome === 'Quarto de Despejo') {
+        titulo = livro.tituloPT || titulo;
+        tituloEn = livro.tituloEN || livro.tituloPT || titulo;
+    }
+    let tituloAtivo = en ? tituloEn : titulo;
+
+    let resumo = livro.resumo || livro.descricao || livro.sinopse || '';
+    let resumoEn = livro.resumoEn || livro.resumo_en || livro.descricaoEn || livro.descricao_en || resumo;
+    if (fonteNome === 'Quarto de Despejo') {
+        resumo = livro.descricaoPT || resumo;
+        resumoEn = livro.descricaoEN || livro.descricaoPT || resumo;
+    } else if (fonteNome === 'Vidas Secas (Alves)') {
+        resumo = livro.movimento_pt || resumo;
+        resumoEn = livro.movimento_en || livro.movimento_pt || resumo;
+    }
+
+    let categoria = livro.genero || livro.categoria || livro.tipo || 'Literatura';
+    let categoriaEn = livro.genero_en || livro.categoria_en || livro.genero || livro.categoria || livro.tipo || 'Literature';
+
+    let destaque = livro.anoPublicacao
+        ? String(livro.anoPublicacao)
+        : categoria;
+    let destaqueEn = livro.anoPublicacao
+        ? String(livro.anoPublicacao)
+        : categoriaEn;
+
     return {
         id,
-        titulo: livro.titulo || livro.nome || livro.nomeLivro || 'Livro sem título',
+        titulo: tituloAtivo,
         autor: livro.autor || livro.autorNome || 'Autor desconhecido',
-        categoria: livro.genero || livro.categoria || livro.tipo || 'Literatura',
-        destaque: livro.anoPublicacao
-            ? String(livro.anoPublicacao)
-            : livro.genero || livro.categoria || 'Livro',
-        imagem: livro.capa || livro.imagem || '/src/assets/img/book.png',
-        resumo: livro.resumo || livro.descricao || livro.sinopse || '',
+        categoria,
+        categoriaEn,
+        destaque,
+        destaqueEn,
+        imagem,
+        resumo,
+        resumoEn,
         anoPublicacao: livro.anoPublicacao,
         fonte: fonteNome,
         original: livro,
@@ -177,7 +229,7 @@ export default function Biblioteca({ usuario, aoSair }) {
 
             const dados = await resposta.json();
             const lista = extrairListaLivros(dados);
-            return lista.map((livro) => normalizarLivro(livro, fonte.nome));
+            return lista.map((livro) => normalizarLivro(livro, fonte.nome, idioma));
         }
 
         async function carregarLivros() {
